@@ -1,0 +1,1 @@
+export type ToArrayStrict<Type> = [Type] extends [any] ? Type[] : never;
