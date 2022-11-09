@@ -1,0 +1,119 @@
+.Viewer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.Viewer-Main {
+  border: 0;
+  overflow: auto;
+  width: 100%;
+  display: flex;
+  min-width: 100%;
+  flex-direction: column;
+}
+
+.Viewer-Input {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 5px;
+}
+
+.Viewer-Input > * {
+  margin: 5px;
+}
+ 
+.Viewer-Input > input {
+  flex-grow: 1;
+}
+
+.Json-Attribute-Name {
+  font-weight: bold;
+  color: green;
+  min-width: 130px;
+  max-width: 130x;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 12px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  word-break: break-all;
+  background-color: white;
+}
+
+.Json-Attribute-Name button {
+  max-height: 20px;
+  min-height: 20px;
+  flex-shrink: 1;
+  max-width: 20px;
+  min-width: 20px;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+}
+
+.Json-Attribute-Value {
+  font-weight: bold;
+  color: green;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 12px;
+  padding: 5px;
+  flex-grow: 1;
+  background-color: #cdefd2;
+  border-left: 1px solid black;
+}
+
+
+.Json-Array,
+.Json-Object {
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+}
+
+.Json-Attribute {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  border: 1px solid black;
+  margin: 5px;
+  margin-bottom: 0;
+  background-color: white;
+}
+
+.Json-Attribute:last-of-type {
+  margin-bottom: 5px;
+}
+
+.Json-Object {
+  flex-grow: 1;
+  background-color: #bfd1fb;
+  border-left: 1px solid black;
+}
+
+.Json-Array > .Json-Object {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  margin: 5px;
+}
+
+.Json-Array {
+  padding: 5px;
+  background-color: #faebd7;
+  border-left: 1px solid black;
+  flex-grow: 1;
+}
+
+.Json-Array > .Json-Attribute-Value {
+  margin-bottom: 5px;
+  border: 1px solid black;
+}
