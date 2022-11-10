@@ -1,50 +1,37 @@
 /**
  * #USE_CALLBACK
  */
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useReducer, useState } from "react";
+import { logData } from "../../../global/util";
 import ExpressionElements from "./ExpressionElements";
+import { runFade } from "./tools";
 
-const Expression: React.FC<{initial: string}> = ({ initial }): JSX.Element => {
-  const [ expressionOne, setExpressionOne ] = useState(initial);
-  const [ expressionTwo, setExpressionTwo ] = useState(initial);
-  /*
-  Using these callbacks only the related ExpressionElements component would be rendered
-  when either expressionOne or expressionTwo is updated
-  */
-  const expressionOneChanged = useCallback((expression: string): void => {
-    setExpressionOne(expression);
-  }, []);
-  const expressionTwoChanged = useCallback((expression: string): void => {
-    setExpressionTwo(expression);
+const Expression: React.FC<{initial: string, flip: boolean}> = ({ initial, flip }): JSX.Element => {
+  const [ expression, setExpression ] = useState(initial);
+  const [ changeCount, dispatch ] = useReducer((val: number) => val + 1, 0);
+ 
+  const expressionChanged = useCallback((exp: string): void => {
+    setExpression(exp);
+    logData(`Expression changed`);
+    dispatch();
   }, []);
 
-  /*
-  Using these callbacks both ExpressionElements components would be rendered
-  when either expressionOne or expressionTwo is updated
-  */
-  /*
-  const expressionOneChangedAlt = (expression: string): void => {
-    setExpressionOne(expression);
-  };
-  const expressionTwoChangedAlt = (expression: string): void => {
-    setExpressionTwo(expression);
-  };
-  */
+  logData(`Expression rendered`);
+  runFade("ExpressionBlock");
+
   return (
     <>
       <div className="contentBlockOuter">
         <div className="contentBlock">
-          <ExpressionElements initial={initial} expressionChanged={expressionOneChanged} name="One"/>
-          <p>
-            Expression One: {expressionOne}
-          </p>
+          { `Expression prop is: ${flip}` }<br/>
+          { `Change count: ${changeCount}`}
         </div>
       </div>
-      <div className="contentBlockOuter">
+      <div id="ExpressionBlock" className="contentBlockOuter fadeInit fadeBorder">
         <div className="contentBlock">
-          <ExpressionElements initial={initial} expressionChanged={expressionTwoChanged} name="Two"/>
+          <ExpressionElements initial={initial} expressionChanged={expressionChanged} id="Expression"/>
           <p>
-            Expression Two: {expressionTwo}
+            Expression: {expression}
           </p>
         </div>
       </div>

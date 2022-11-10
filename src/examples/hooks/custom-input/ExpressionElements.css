@@ -1,4 +1,8 @@
-
+.expressionForm {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}
 
 .expressionForm select,
 .expressionForm input {

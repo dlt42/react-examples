@@ -2,11 +2,12 @@
 /**
  * #REACT.MEMO
  */
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { ToArrayStrict } from "../../../global/types";
 import { logData } from "../../../global/util";
-import useInput, { ValueChangedCallback } from "./useInput";
-import styles from  './ExpressionElements.module.css';
+import useInput from "./useInput";
+import './ExpressionElements.css';
+import { runFade } from "./tools";
 
 export enum OPERATORS {
   ADD = "+",
@@ -22,16 +23,6 @@ const operations: OPERATORS[] =  [
   OPERATORS.DIVIDE
 ];
 
-export interface OperatorProps {
-  initial: OPERATORS, 
-  valueChanged: ValueChangedCallback<OPERATORS>
-}
-
-export interface NumberProps {
-  initial: number, 
-  valueChanged: ValueChangedCallback<number>
-}
-
 type ExpressionElement = number | OPERATORS;
 
 type UnparsedExperessionElement = number | string;
@@ -40,28 +31,28 @@ type ExperessionElementArray = ToArrayStrict<ExpressionElement>;
 
 type ExperessionElement = number | OPERATORS;
 
+export type ElementChangedCallback<T> = (value: T, index: number) => void;
+
 export type ExpressionChangedCallback = (expression: string) => void;
+
+export interface OperatorProps {
+  initial: OPERATORS, 
+  valueChanged: ElementChangedCallback<OPERATORS>,
+  index: number,
+  id: string
+}
+
+export interface NumberProps {
+  initial: number, 
+  valueChanged: ElementChangedCallback<number>,
+  index: number,
+  id: string
+}
 
 export interface ExpressionElementsProps {
   initial: string,
   expressionChanged: ExpressionChangedCallback,
-  name: string
-}
-
-export const OperatorElement: React.FC<OperatorProps> = ({ initial, valueChanged }): JSX.Element => {
-  const [ selectProps ] = useInput(initial, valueChanged);
-  return (
-      <select {...selectProps}>
-        { operations.map((operation: OPERATORS) => <option key={operation} value={operation}>{operation}</option>) }
-      </select>
-  )
-}
-
-export const NumberElement: React.FC<NumberProps> = ({ initial, valueChanged }): JSX.Element => {
-  const [ inputProps ] = useInput(initial, valueChanged);
-  return (
-    <input type="number" {...inputProps} pattern="[0-9]+"/>
-  )
+  id: string
 }
 
 const expressionRegEx: RegExp = /([*/]|\b\s*-|\b\s*\+)/g;
@@ -77,37 +68,69 @@ const parseExpression = (rawExpression: string): ExperessionElementArray => {
   return rawExpression.split(expressionRegEx).map(convertPart);
 }
 
-const ExpressionElements: React.FC<ExpressionElementsProps> = ({ initial, expressionChanged, name }): JSX.Element => {
-  const [ expression, setExpression ] = useState(parseExpression(initial));
-  const logExpressions = (message: string, current: string): void => {
-    logData(message, { initial, current });
-  }
-  const createCallback = (index: number): ValueChangedCallback<UnparsedExperessionElement> => {
-    return (part: UnparsedExperessionElement): void => {
-      const revisedExpression = [...expression];
-      revisedExpression[index] = convertPart(part);
-      setExpression(revisedExpression);
-      const current = revisedExpression.join();
-      expressionChanged(current);
-      logExpressions(`Expression ${name} updated`, current);
-    }
-  }
-  const current: string = expression.join();
-  logExpressions(`Expression ${name} rendered`, current);
+export const OperatorElement: React.FC<OperatorProps> = React.memo(({ initial, valueChanged, index, id }): JSX.Element => {
+  const [ selectProps ] = useInput(initial, useCallback((value: OPERATORS) => valueChanged(value, index), [index, valueChanged]));
+  
+  logData(`Expression element ${index} rendered`);
+  runFade(id);
+  
+  return (
+    <div id={id} className="fadeInit fadeBorder">
+      <select {...selectProps}>
+        { operations.map((operation: OPERATORS) => <option key={operation} value={operation}>{operation}</option>) }
+      </select>
+    </div>
+  )
+})
+
+export const NumberElement: React.FC<NumberProps> = React.memo(({ initial, valueChanged, index, id }): JSX.Element => {
+  const [ inputProps ] = useInput(initial,  useCallback((value: number) => valueChanged(value, index), [index, valueChanged]));
+  
+  logData(`Expression element ${index + 1} rendered`);
+  runFade(id);
+  
+  return (
+    <div id={id} className="fadeInit fadeBorder">
+      <input type="number" {...inputProps} pattern="[0-9]+"/>
+    </div>
+  )
+})
+
+const ExpressionElements: React.FC<ExpressionElementsProps> = React.memo(({ initial, expressionChanged, id }): JSX.Element => {
+  const [ expression ] = useState(parseExpression(initial));
+  const elementCallback = useCallback((part: UnparsedExperessionElement, index: number) => {
+    expression[index] = convertPart(part);
+    logData(`Expression elements updated`, { initial, current: expression.join("") });
+    expressionChanged(expression.join(""));
+  }, [initial, expressionChanged, expression]);
+
+  logData(`Expression elements rendered`, { initial,  current: expression.join("") });
+  runFade(id);
+
   return (
     <>
-      <h4>{name}</h4>
-      <form className={styles.expressionForm}>
+      <form id={id} className="expressionForm fadeInitBlack fadeBorder">
       {
         expression.map((current: ExpressionElement, index: number) => typeof current === 'number'
-            ? <NumberElement key={index} initial={current} valueChanged={ createCallback(index) }/>
-            : <OperatorElement key={index} initial={current} valueChanged={ createCallback(index) }/>
+            ? <NumberElement 
+                key={index} 
+                initial={current} 
+                index={index}
+                id={id + index}
+                valueChanged={elementCallback}
+                />
+            : <OperatorElement 
+                key={index} 
+                initial={current} 
+                index={index}
+                id={id + index}
+                valueChanged={elementCallback}/>
         )
       }
       </form>
     </>
   )
-}
+})
 
 // Wrap the ExpressionElements component in React.memo to prevent unnecessary re-renderin
-export default React.memo(ExpressionElements);
+export default ExpressionElements;

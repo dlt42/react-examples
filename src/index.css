@@ -15,7 +15,8 @@ code {
 .contentBlockOuter {
   display: flex;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: column;
+  margin: 5px;
 }
 
 .contentBlock {
@@ -24,4 +25,18 @@ code {
   border: 1px solid #2b2b2b;
   padding: 5px;
   margin: 5px;
+}
+
+.fadeInit {
+  border: 1px solid transparent;
+  transition: border 1s;
+}
+
+.fadeInitBlack {
+  border: 1px solid black;
+  transition: border 1s;
+}
+
+.fadeBorder {
+  border: 1px solid red;
 }
