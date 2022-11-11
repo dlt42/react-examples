@@ -76,7 +76,7 @@ const JSONViewer: React.FC = (): JSX.Element => {
             </div>
           </details>
           
-          <JSONTree isTop={true} elemKey={null} elemValue={json} />
+          <JSONTree elemKey={null} elemValue={json} path=""/>
           </article>
         </section>
       </div>

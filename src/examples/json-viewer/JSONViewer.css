@@ -84,6 +84,7 @@
   flex-direction: column;
 }
 
+.Json-Root,
 .Json-Attribute {
   display: flex;
   flex-direction: row;
@@ -94,6 +95,7 @@
   background-color: white;
 }
 
+.Json-Root,
 .Json-Attribute:last-of-type {
   margin-bottom: 5px;
 }
