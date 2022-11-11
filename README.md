@@ -1,6 +1,6 @@
 # react-examples
 
-I have created this project to store examples, training excercises, and tech tests as a reference for myself but also for the benefit of others (should they stumble across it).
+I have created this project as a repository of example react components I have written, accessible via a simple UI, as a reference for myself but also for the benefit of others (should they stumble across it).
 
 My aim is to place the source code for each example in a separate folder to make discovery easier.
 
