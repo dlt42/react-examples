@@ -8,11 +8,13 @@
   padding: 5px;
   border-bottom: 1px solid  #2b2b2b;
   border-top: 1px solid #2b2b2b;
+  background-color: #D6D6DA;
 }
 
 .NavLink {
   border: 1px solid #2b2b2b;
   background-color: #d2d2d2;
+  background-color: #FFF;
   display: block;
   padding: 0;
   margin: 5px;

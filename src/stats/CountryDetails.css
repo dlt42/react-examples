@@ -1,0 +1,64 @@
+.Country-Details-Text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  overflow: hidden;
+  margin-left: 10px;
+  flex-wrap: nowrap;
+  border: 1px solid #333;
+  flex: 0 1 50%;
+  padding: 5px;;
+}
+
+.Country-Details-Text > div {
+  display: flex;
+  flex-direction: row;
+}
+
+.Country-Details-Image {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: 1px solid #333;
+  background-color: #D6D6DA;
+  flex: 0 1 50%;
+  padding: 5px;
+  align-items: center;
+}
+
+.Country-Details-Text > div > span {
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+.Country-Details-Text > div > span:first-of-type {
+  flex: 1 0 30%;
+  display: inline-block;
+  text-align: right;
+  padding-right: 5px;
+}
+
+.Country-Details-Text > div > span:last-of-type {
+  flex: 0 0 70%;
+  display: inline-block;
+  text-align: left;
+  padding-left: 5px;
+}
+
+.Country-Details {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+  max-height: 120px;
+  height: 120px;
+  min-height: 120px
+}
+
+.Country-Details-Image img {
+  max-height: 120px;
+  border: 1px solid #333;
+  max-width: 100%;
+  flex: 0 1 00%;
+  max-height: 100%;
+}

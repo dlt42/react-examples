@@ -12,14 +12,14 @@ code {
     monospace;
 }
 
-.contentBlockOuter {
+.Content-Block-Outer {
   display: flex;
   justify-content: center;
   flex-direction: column;
   margin: 5px;
 }
 
-.contentBlock {
+.Content-Block {
   display: flex;
   flex-direction: column;
   border: 1px solid #2b2b2b;

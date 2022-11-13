@@ -1,0 +1,15 @@
+.List-Container, 
+.Map-Container {
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.Map-Container {
+  flex-grow: 1;
+}
+
+.List-Container > div {
+  border: 1px solid black;
+}

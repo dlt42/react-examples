@@ -21,14 +21,14 @@ const Expression: React.FC<{initial: string, flip: boolean}> = ({ initial, flip 
 
   return (
     <>
-      <div className="contentBlockOuter">
-        <div className="contentBlock">
+      <div className="Content-Block-Outer">
+        <div className="Content-Block">
           { `Expression prop is: ${flip}` }<br/>
           { `Change count: ${changeCount}`}
         </div>
       </div>
-      <div id="ExpressionBlock" className="contentBlockOuter fadeInit fadeBorder">
-        <div className="contentBlock">
+      <div id="ExpressionBlock" className="Content-Block-Outer fadeInit fadeBorder">
+        <div className="Content-Block">
           <ExpressionElements initial={initial} expressionChanged={expressionChanged} id="Expression"/>
           <p>
             Expression: {expression}

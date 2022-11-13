@@ -90,8 +90,8 @@ const Counter: React.FC<{num: number | null}> = (props): JSX.Element => {
   });
 
   return (
-    <div className="contentBlockOuter">
-      <div className="contentBlock">
+    <div className="Content-Block-Outer">
+      <div className="Content-Block">
         <div className={styles.counterControls}>
           <button onClick={() => dispatch({ type: ACTIONS.INC })}>
               Increment

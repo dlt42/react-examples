@@ -1,0 +1,31 @@
+.Country-List {
+  width: 200px;
+  margin: 5px;
+  overflow: scroll;
+  border: 1px solid #333;
+  background-color: #D6D6DA;
+}
+
+.Country {
+  background-color: #FFF;
+  cursor: default;
+}
+
+.CountryHighlight,
+.Country {
+  border: 1px solid rgb(75, 142, 75);
+  flex-grow: 1;
+  margin: 5px;
+}
+
+.CountryHighlight {
+  background-color: #F53;
+  color: #FFF;
+}
+
+.List-Container h3 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 5px;
+  padding: 5px;
+}
