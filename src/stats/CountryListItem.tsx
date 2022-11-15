@@ -24,7 +24,6 @@ const CountryListItem: FunctionComponent<CountryListItemProps> = memo(({ current
   const dispatchHighlightCountryCode = useCallback((countryCode: CountryCode): void => {
     appDispatch(setHighlightCountryCode(countryCode));
   }, [appDispatch]);
-  console.log(current.alpha3Code);
   return (
     <div 
       ref={ (el: HTMLDivElement) => addItemRef({ code: current.alpha3Code, el }) }

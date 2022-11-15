@@ -51,7 +51,7 @@ const CountryList: FunctionComponent = memo((): JSX.Element => {
             className: highlightCountryCode === current.alpha3Code ? "CountryHighlight" : "Country"
           };
           return (
-            <CountryListItem {...props} />
+            <CountryListItem key={ current.key } {...props} />
           );
         })
       }

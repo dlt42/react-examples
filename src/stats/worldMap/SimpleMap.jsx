@@ -5,8 +5,8 @@ import {
   ZoomableGroup
 } from "react-simple-maps";
 import SimpleMapGeography from './SimpleMapGeography';
-import { useAppDispatch, useAppSelector } from "../state/hooks";
-import { selectHighlightCountryCode, setHighlightCountryCode } from "../state/appSlice";
+import { useAppDispatch, useAppSelector } from "../../state/hooks";
+import { selectHighlightCountryCode, setHighlightCountryCode } from "../../state/appSlice";
 import getUserLocale from 'get-user-locale';
 import "./SimpleMap.css";
 /**

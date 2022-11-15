@@ -3,7 +3,7 @@ import {
   memo 
 } from "react";
 import CountryList from "./CountryList";
-import SimpleMap from "./SimpleMap";
+import SimpleMap from "./worldMap/SimpleMap";
 import './CountryStats.css';
 import CountryDetails from "./CountryDetails";
 

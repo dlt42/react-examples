@@ -12,7 +12,9 @@ export type Country = {
   subregion: string,
   population: number,
   alpha3Code: CountryCode
-  flag: string
+  flag: string,
+  altSpellings: string[],
+  shortName: string
 }
 
 export type Countries = {

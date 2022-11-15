@@ -1,3 +1,4 @@
+import { logData } from "./util";
 
 
 /**
@@ -21,17 +22,17 @@ const processTaks = async (tasks: Function[]): Promise<any>  => {
 
 const createTask: Function = (id: string): Function => {
   return () => new Promise((resolve, reject) => {
-    console.log(`Task ${id} started`);
+    logData(`Task ${id} started`);
     setTimeout(() => {
       resolve(id);
-    	console.log(`Task ${id} completed`);
+    	logData(`Task ${id} completed`);
     }, 1000);
   });
 }
 
 const runTasks: Function = async () => {
   let results: [] = [];
-  console.log("RUN TASKS STARTED")
+  logData("RUN TASKS STARTED")
   await processTaks([
     createTask(1),
     createTask(2),
@@ -45,10 +46,10 @@ const runTasks: Function = async () => {
     createTask(10),
   ]).then((result: any) => {
     results = result;
-    console.log("RESULTS:"+results)
-    console.log('Complete')
+    logData("RESULTS:"+results)
+    logData('Complete')
   })
-  console.log("RUN TASKS COMPLETED");
+  logData("RUN TASKS COMPLETED");
   return results;
 }
 
