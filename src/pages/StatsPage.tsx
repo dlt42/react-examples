@@ -13,6 +13,8 @@ const StatsPage: FunctionComponent = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const [ status, setStatus ] = useState('Loading');
   useEffect(() => {
+
+    // TODO: Move this code to a utility and call it higher up in the component tree 
     const loadCountries = async () => {
       try {
         const res: { data: Country[] } = await axios.get('https://restcountries.com/v2/all?fields=name,capital,region,subregion,population,alpha3Code,flag,altSpellings')

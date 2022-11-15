@@ -134,12 +134,13 @@ export default class ChartController {
         })
         .attr("pointer-events", d => "auto" )
         .attrTween("d", d => () => this.arc(d.current));
-    this.label.filter(d => {
-        return +this.label.attr("fill-opacity") || this._labelVisible(d.target);
-      })
+    this.label
       .transition(t)
       .attr("fill-opacity", d => +this._labelVisible(d.target))
-      .attrTween("transform", d => () => this._labelTransform(d.current));
+      .attrTween("transform", d => () => this._labelTransform(d.current))
+      .on("end", (e, i) => {
+        this.label.attr("fill-opacity", d => +this._labelVisible(d.target))
+      });
   }
 
   _setTarget(found, d, p) {
@@ -154,8 +155,8 @@ export default class ChartController {
       d.target = {
         x0: Math.max(0, Math.min(1, (d.x0 - p.x0) / (p.x1 - p.x0))) * PI2,
         x1: Math.max(0, Math.min(1, (d.x1 - p.x0) / (p.x1 - p.x0))) * PI2,
-        y0: Math.max(0, d.y0 - p.depth) * 2,
-        y1: Math.max(0, d.y1 - p.depth) * 2
+        y0: Math.max(0, d.y0 - p.depth) * 1.5,
+        y1: Math.max(0, d.y1 - p.depth) * 1.5
       }
     }
   }
