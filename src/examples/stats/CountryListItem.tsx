@@ -8,10 +8,10 @@ import {
   Country, 
   setHighlightCountryCode, 
   CountryCode
-} from "../state/appSlice";
+} from "../../state/appSlice";
 import { 
   useAppDispatch, 
-} from "../state/hooks";
+} from "../../state/hooks";
 import "./CountryList.css"
 
 export interface CountryListItemProps {

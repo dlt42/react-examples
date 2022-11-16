@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import AppNav from '../components/Header';
 import { Countries, Country, selectCountries } from "../state/appSlice";
 import { useAppSelector } from "../state/hooks";
-import ZoomableSunburstChart1 from "../d3/ZoomableSunburstChart1";
-import ZoomableSunburstChart2 from "../d3/ZoomableSunburstChart2";
+import ZoomableSunburstChart1 from "../examples/d3/ZoomableSunburstChart1";
+import ZoomableSunburstChart2 from "../examples/d3/ZoomableSunburstChart2";
 import "./ChartPage.css";
 
 interface ChartData { 

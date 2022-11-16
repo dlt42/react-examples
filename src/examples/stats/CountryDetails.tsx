@@ -10,10 +10,10 @@ import {
   selectCountries, 
   selectHighlightCountryCode,
   CountryCode
-} from "../state/appSlice";
+} from "../../state/appSlice";
 import { 
   useAppSelector 
-} from "../state/hooks";
+} from "../../state/hooks";
 import "./CountryDetails.css"
 
 const CountryDetails: FunctionComponent = memo((): JSX.Element => {

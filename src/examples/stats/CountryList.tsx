@@ -13,10 +13,10 @@ import {
   selectCountries, 
   selectHighlightCountryCode,
   CountryCode
-} from "../state/appSlice";
+} from "../../state/appSlice";
 import {
   useAppSelector 
-} from "../state/hooks";
+} from "../../state/hooks";
 import "./CountryList.css"
 import CountryListItem, { CountryListItemProps } from "./CountryListItem";
 
