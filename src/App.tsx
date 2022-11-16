@@ -12,8 +12,15 @@ import ExamplesPage from './pages/ExamplesPage';
 import JSONViewerPage from './pages/JSONViewerPage';
 import StatsPage from './pages/StatsPage';
 import ChartPage from './pages/ChartPage';
+import { useAppDispatch } from './state/hooks';
+import { useEffect } from 'react';
+import DataLoader from './global/DataLoader';
 
 function App() {
+  const appDispatch = useAppDispatch();
+  useEffect(() => { 
+    new DataLoader().loadCountries(appDispatch)
+  }, [appDispatch]);
   const navData: NavData = { 
     links: [
       { to: '/', label: 'Home' },
