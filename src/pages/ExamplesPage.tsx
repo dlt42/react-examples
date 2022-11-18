@@ -1,9 +1,9 @@
-import React, { MouseEvent, useState } from "react";
+import React, { MouseEvent, useState, FunctionComponent } from "react";
 import AppNav from "../components/Header";
 import Expression from "../examples/hooks/custom-input/Expression";
 import Counter from "../examples/hooks/useEffect/Counter";
 
-const ExamplesPage: React.FunctionComponent = (): JSX.Element => {
+const ExamplesPage: FunctionComponent = (): JSX.Element => {
   const [flip, setFlip] = useState(false);
   return (
     <>

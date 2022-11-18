@@ -15,6 +15,7 @@ import ChartPage from './pages/ChartPage';
 import { useAppDispatch } from './state/hooks';
 import { useEffect } from 'react';
 import DataLoader from './global/DataLoader';
+import ControlsPage from './pages/ControlsPage';
 
 function App() {
   const appDispatch = useAppDispatch();
@@ -27,7 +28,8 @@ function App() {
       { to: '/examples', label: 'Examples' },
       { to: '/json_viewer', label: 'JSON Viewer' },
       { to :'/country_stats', label: 'World Map' },
-      { to :'/sunburst', label: 'Charts' } 
+      { to :'/sunburst', label: 'Charts' },
+      { to :'/controls', label: 'Controls' }  
     ], 
     routes: [
       { path: '/', element: <HomePage /> },
@@ -35,6 +37,7 @@ function App() {
       { path: '/json_viewer', element: <JSONViewerPage />},
       { path: '/country_stats', element: <StatsPage />},
       { path: '/sunburst', element: <ChartPage />},
+      { path: '/controls', element: <ControlsPage />},
       { path: '*', element: <NotFoundPage/> }
     ]
   };

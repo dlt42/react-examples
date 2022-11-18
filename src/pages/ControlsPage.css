@@ -1,0 +1,10 @@
+.Controls-Section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.Radial-Output {
+  margin: 10px;
+}
