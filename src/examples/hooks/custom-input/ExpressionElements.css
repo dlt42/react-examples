@@ -2,10 +2,20 @@
   display: flex;
   justify-content: center;
   padding: 5px;
+  gap: 5px;
+}
+
+.expressionForm > div {
+  display: flex;
+  overflow: hidden;
 }
 
 .expressionForm select,
 .expressionForm input {
-  margin: 5px;
   padding: 5px;
+  max-width: 100%;
+}
+
+.expressionForm input {
+  min-width: 40px;
 }
