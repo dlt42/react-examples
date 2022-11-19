@@ -1,5 +1,19 @@
-import { FunctionComponent, memo, MouseEvent, RefObject, useCallback, useEffect, useRef, useState } from "react";
-import { degreesToRadians, RadialSelectOptionProps, RadialSelectOptionState, setRefStyle, StepCallback } from "./RadialSelectSupport";
+import { 
+  FunctionComponent, 
+  memo, 
+  MouseEvent, 
+  useCallback, 
+  useEffect, 
+  useRef, 
+  useState 
+} from "react";
+import { 
+  degreesToRadians, 
+  RadialSelectOptionProps, 
+  RadialSelectOptionState, 
+  setRefStyle, 
+  StepCallback 
+} from "./RadialSelectSupport";
 
 const StepTotal = 10;
 

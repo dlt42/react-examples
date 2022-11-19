@@ -11,7 +11,7 @@ const HomePage: FunctionComponent = (): JSX.Element => (
     <main>
       <section>
         <h3>React Examples</h3>
-        <Spinner img={crazyPNG} />
+        <Spinner img={crazyPNG} angleIncrement={2} intervalDuration={50} />
       </section>
     </main>
   </>
