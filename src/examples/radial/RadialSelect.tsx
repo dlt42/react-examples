@@ -11,9 +11,6 @@ import "./RadialSelect.css"
 import RadialSelectOption from "./RadialSelectOption";
 import { OptionCallback, RadialOption, RadialSelectionTypes, RadialSelectOptionProps, RadialSelectProps, RegisterCallback, SelectCallback, setRefStyle, StepCallback } from "./RadialSelectSupport";
 
-
-
-
 const RadialSelect = memo(<T extends RadialSelectionTypes>({
   options, label, selectedLabel, selected, 
   onChange, diameter, centerDiameter, itemDiameter

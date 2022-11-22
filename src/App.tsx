@@ -16,6 +16,7 @@ import { useAppDispatch } from './state/hooks';
 import { useEffect } from 'react';
 import DataLoader from './global/DataLoader';
 import ControlsPage from './pages/ControlsPage';
+import LifePage from './pages/LifePage';
 
 function App() {
   const appDispatch = useAppDispatch();
@@ -29,7 +30,9 @@ function App() {
       { to: '/json_viewer', label: 'JSON Viewer' },
       { to :'/country_stats', label: 'World Map' },
       { to :'/sunburst', label: 'Charts' },
-      { to :'/controls', label: 'Controls' }  
+      { to :'/controls', label: 'Controls' },
+      { to :'/life', label: 'Game of Life' }  
+
     ], 
     routes: [
       { path: '/', element: <HomePage /> },
@@ -38,6 +41,7 @@ function App() {
       { path: '/country_stats', element: <StatsPage />},
       { path: '/sunburst', element: <ChartPage />},
       { path: '/controls', element: <ControlsPage />},
+      { path: '/life', element: <LifePage />},
       { path: '*', element: <NotFoundPage/> }
     ]
   };

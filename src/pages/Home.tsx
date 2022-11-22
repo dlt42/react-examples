@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react";
 import AppNav from "../components/Header";
+import Life from "../examples/life/Life";
 import Spinner from "../examples/spinner/Spinner";
 import crazyPNG from "./crazy.png";
 
