@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import AppNav from "../components/Header";
-import Life from "../examples/life/Life";
+import LifeContainer from "../examples/life/LifeContainer";
 
 const LifePage: FunctionComponent = (): JSX.Element => (
     <>
@@ -9,7 +9,7 @@ const LifePage: FunctionComponent = (): JSX.Element => (
       </header>
       <main>
         <section>
-          <Life height={100} width={100}/>
+          <LifeContainer height={100} width={100}/>
         </section>
       </main>
     </>

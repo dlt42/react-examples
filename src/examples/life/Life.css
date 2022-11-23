@@ -10,13 +10,17 @@
   position: relative;
 }
 
+.FastLife,
 .Life {
-  width: 300px;
-  height: 300px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   border: 1px solid #2b2b2b;
+}
+
+.Life {
+  width: 400px;
+  height: 400px;
 }
 
 .Life-Initialising {
@@ -27,6 +31,12 @@
   justify-content: center;
   align-items: center;
   background-color: white;
+}
+
+.Life-Controls {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
 }
 
 .Cell-Alive,
