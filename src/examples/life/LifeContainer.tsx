@@ -4,9 +4,9 @@
  * See: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life 
  */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FC, memo, useEffect, useReducer, useState } from "react";
+import { FC, memo, useCallback, useEffect, useReducer, useState } from "react";
 import './Life.css';
-import { faPause, faPlay, faGauge, faGaugeHigh } from "@fortawesome/free-solid-svg-icons";
+import { faPause, faPlay, faGauge, faGaugeHigh, faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { LifeContainerProps, LifeStore } from "./LifeEntities";
 import Life from "./Life";
 import FastLife from "./FastLife";
@@ -24,6 +24,11 @@ const LifeContainer: FC<LifeContainerProps> = memo((props): JSX.Element => {
   const [ speed, setSpeed] = useState<Speed>(Speed.SLOW);
   const [ lifeStore ] = useState<LifeStore>(new LifeStore(width, height));
   useEffect(() => setInitialising(true), []);
+  const reset = useCallback(() => {
+    setPaused(true);
+    lifeStore.reset(width,height)
+    setPaused(false);
+  }, [lifeStore, width, height]);
   return (
     <div className="Life-Container">
       {
@@ -42,6 +47,9 @@ const LifeContainer: FC<LifeContainerProps> = memo((props): JSX.Element => {
           </button>
           <button title={speed === Speed.SLOW ? "Speed up" : "Slow down"} onClick={(e) => setSpeed((current) => current === Speed.SLOW ? Speed.FAST : Speed.SLOW )}>
             <FontAwesomeIcon icon={speed === Speed.SLOW ? faGaugeHigh : faGauge} />
+          </button>
+          <button title="Reset" onClick={(e) => reset()}>
+            <FontAwesomeIcon icon={faRotateLeft} />
           </button>
         </div>
       </>

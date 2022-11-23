@@ -7,7 +7,7 @@ import { ToArrayStrict } from "../../../global/types";
 import { logData } from "../../../global/util";
 import useInput from "./useInput";
 import './ExpressionElements.css';
-import { runFade } from "./tools";
+import { runFade, runFadeField } from "./tools";
 
 export enum OPERATORS {
   ADD = "+",
@@ -72,11 +72,11 @@ export const OperatorElement: React.FC<OperatorProps> = React.memo(({ initial, v
   const [ selectProps ] = useInput(initial, useCallback((value: OPERATORS) => valueChanged(value, index), [index, valueChanged]));
   
   logData(`Expression element ${index} rendered`);
-  runFade(id);
+  runFadeField(id);
   
   return (
-    <div id={id} className="fadeInit fadeBorder">
-      <select {...selectProps}>
+    <div>
+      <select id={id} {...selectProps} className="expressionField fieldFadeInitBlack fieldFadeBorderRed">
         { operations.map((operation: OPERATORS) => <option key={operation} value={operation}>{operation}</option>) }
       </select>
     </div>
@@ -87,11 +87,11 @@ export const NumberElement: React.FC<NumberProps> = React.memo(({ initial, value
   const [ inputProps ] = useInput(initial,  useCallback((value: number) => valueChanged(value, index), [index, valueChanged]));
   
   logData(`Expression element ${index + 1} rendered`);
-  runFade(id);
+  runFadeField(id);
   
   return (
-    <div id={id} className="fadeInit fadeBorder">
-      <input type="number" {...inputProps} pattern="[0-9]+"/>
+    <div>
+      <input id={id}  className="expressionField fieldFadeInitBlack fieldFadeBorderRed" type="number" {...inputProps} pattern="[0-9]+"/>
     </div>
   )
 })
@@ -109,7 +109,7 @@ const ExpressionElements: React.FC<ExpressionElementsProps> = React.memo(({ init
 
   return (
     <>
-      <form id={id} className="expressionForm fadeInitBlack fadeBorder">
+      <form id={id} className="expressionForm fadeInitBlack fadeBorderRed">
       {
         expression.map((current: ExpressionElement, index: number) => typeof current === 'number'
             ? <NumberElement 

@@ -8,6 +8,7 @@
 .expressionForm > div {
   display: flex;
   overflow: hidden;
+  min-width: 45px;
 }
 
 .expressionForm select,

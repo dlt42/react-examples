@@ -17,7 +17,7 @@ const Expression: React.FC<{initial: string, flip: boolean}> = ({ initial, flip 
   }, []);
 
   logData(`Expression rendered`);
-  runFade("ExpressionBlock");
+  runFade("ExpressionContentBlock");
 
   return (
     <>
@@ -27,8 +27,8 @@ const Expression: React.FC<{initial: string, flip: boolean}> = ({ initial, flip 
           { `Change count: ${changeCount}`}
         </div>
       </div>
-      <div id="ExpressionBlock" className="Content-Block-Outer fadeInit fadeBorder">
-        <div className="Content-Block">
+      <div id="ExpressionBlock" className="Content-Block-Outer">
+        <div id="ExpressionContentBlock" className="Content-Block fadeBorderRed fadeInitBlack">
           <ExpressionElements initial={initial} expressionChanged={expressionChanged} id="Expression"/>
           <p>
             Expression: {expression}

@@ -37,6 +37,30 @@ code {
   transition: border 1s;
 }
 
-.fadeBorder {
+.expressionField {
+  outline: rgb(0, 0, 0) auto 1px;
+}
+
+.fieldFadeInitBlack {
+  outline: rgb(0, 0, 0) auto 1px;
+  transition: outline 1s;
+}
+
+.fieldFadeInitBlack:focus-visible {
+  outline: rgb(255, 200, 2) auto 1px;
+}
+
+.fadeBorderRed {
   border: 1px solid red;
 }
+
+.fieldFadeBorderRed {
+outline: red auto 1px;
+}
+
+.fieldFadeBorderRed:focus-visible {
+  outline: red auto 1px;
+}
+
+
+

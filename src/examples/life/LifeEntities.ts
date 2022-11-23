@@ -69,10 +69,18 @@ export class Cell {
 }
 
 export class LifeStore {
-  cells: Cell[];
+  cells!: Cell[];
   renderData: boolean[] = [];
 
   constructor (width: number, height: number) {
+    this.reset(width, height);
+  }
+
+  private transfer = () => {
+    this.renderData = this.cells.map((cell: Cell) => cell.transfer());
+  }
+
+  public reset = (width: number, height: number) => {
     this.cells = Array.from(
       Array( width * height ), 
       (_, index, ) => new Cell(index, width, height)
@@ -82,10 +90,6 @@ export class LifeStore {
     });
     this.transfer();
   }
-
-  private transfer = () => {
-    this.renderData = this.cells.map((cell: Cell) => cell.transfer());
-  } 
 
   public process = (): void => {
     this.cells.forEach((cell: Cell) => cell.prepare());      

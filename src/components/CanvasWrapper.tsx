@@ -1,5 +1,6 @@
 import { FC, memo, RefObject, useRef, useEffect } from 'react'
 import { logData } from '../global/util';
+
 export type Counter = { value: number }
 export type DrawFunction = (
   context: CanvasRenderingContext2D, 
@@ -119,7 +120,7 @@ const useCanvasWrapper: Function = (draw: DrawFunction, options?: Options): RefO
 const CanvasWrapper: FC<CanvasProps> = memo((props): JSX.Element => {
   const { draw, options, canvasAttrs } = props
   const canvasRef = useCanvasWrapper(draw, options)
-  return <canvas ref={canvasRef} {...canvasAttrs}/>
+  return <canvas ref={canvasRef} {...canvasAttrs} />
 });
 
 export default CanvasWrapper;

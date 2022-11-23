@@ -8,10 +8,10 @@ export interface AppNavProps {
 const AppNav: React.FC<AppNavProps> = ({ title }): JSX.Element => {
   const { Nav } = useNav();
   return (
-    <nav>
+    <>
       <h1>{title}</h1>
       <Nav />
-    </nav>
+    </>
   )
 };
 
