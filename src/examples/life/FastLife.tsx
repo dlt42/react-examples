@@ -5,9 +5,9 @@
  */
 import { FC, memo, useCallback, useEffect, useRef, useState } from "react"
 import CanvasWrapper, { DrawFunction } from "../../components/CanvasWrapper";
-import { FastLifeProps } from "./LifeEntities";
+import { FastLifeProps, LifeTypes } from "./LifeEntities";
  
-const FastLife: FC<FastLifeProps<boolean | number>> = memo(({ width, height, setInitialising, increaseGenerations, lifeStore, paused, size}): JSX.Element => {
+const FastLife: FC<FastLifeProps<LifeTypes>> = memo(({ width, height, setInitialising, increaseGenerations, lifeStore, paused, size}): JSX.Element => {
   const [ attrs] = useState({ canvasAttrs: { width: width * size, height: height * size }});
 
   // Ref for paused so that it can be evaluated in the callback without it being updatd by paused being toggled  
@@ -23,7 +23,7 @@ const FastLife: FC<FastLifeProps<boolean | number>> = memo(({ width, height, set
         context.clearRect(0, 0, context.canvas.width, context.canvas.height)
         const incX = context.canvas.width / width;
         const incY = context.canvas.height / height;
-        lifeStore?.renderData.map((elem: number | boolean, i: number) => {
+        lifeStore?.renderData.map((elem: LifeTypes, i: number) => {
           context.fillStyle = lifeStore.getFillColor(elem);
           context.beginPath()
           const y = Math.floor(i / width)

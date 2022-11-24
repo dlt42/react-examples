@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC, memo, useCallback, useEffect, useReducer, useState } from "react";
 import './Life.css';
 import { faPause, faPlay, faGauge, faGaugeHigh, faRotateLeft } from "@fortawesome/free-solid-svg-icons";
-import { FastLifeProps, LifeContainerProps, LifeProps, LifeStoreNumeric } from "./LifeEntities";
+import { FastLifeProps, LifeContainerProps, LifeProps, LifeStoreNumeric, LifeTypes } from "./LifeEntities";
 import Life from "./Life";
 import FastLife from "./FastLife";
 
@@ -37,8 +37,8 @@ const LifeContainer: FC<LifeContainerProps> = memo((props): JSX.Element => {
       <>
         {
           speed === Speed.FAST
-          ? <FastLife {...{...props, setInitialising, paused, increaseGenerations, lifeStore, size: 4 } as FastLifeProps<number | boolean>}/>
-          : <Life {...{...props, setInitialising, paused, increaseGenerations, lifeStore } as LifeProps<number | boolean>} />
+          ? <FastLife {...{...props, setInitialising, paused, increaseGenerations, lifeStore, size: 4 } as FastLifeProps<LifeTypes>}/>
+          : <Life {...{...props, setInitialising, paused, increaseGenerations, lifeStore } as LifeProps<LifeTypes>} />
         }
         <div className="Life-Info">
           Total generations: {generations}

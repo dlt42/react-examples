@@ -4,10 +4,10 @@
  * See: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life 
  */
 import { FC, memo, useEffect, useRef, useState } from "react";
-import { LifeProps } from "./LifeEntities";
+import { LifeProps, LifeTypes } from "./LifeEntities";
 
-const Life: FC<LifeProps<boolean | number>> = memo(({ width, height, setInitialising, increaseGenerations, lifeStore, paused }): JSX.Element => {
-  const [ renderData, setRenderData ] = useState<(number | boolean)[]>([]);
+const Life: FC<LifeProps<LifeTypes>> = memo(({ width, height, setInitialising, increaseGenerations, lifeStore, paused }): JSX.Element => {
+  const [ renderData, setRenderData ] = useState<LifeTypes[]>([]);
   
   // Ref for paused
   const isPaused = useRef<boolean>(paused); 
@@ -32,7 +32,7 @@ const Life: FC<LifeProps<boolean | number>> = memo(({ width, height, setInitiali
   return (
     <div className="Life">
       {
-        renderData.map((state: number | boolean, index: number) => 
+        renderData.map((state: LifeTypes, index: number) => 
           <div key={`${index}-${state}`} style={{ backgroundColor: lifeStore.getFillColor(state) }}  className={state?"Cell-Alive":"Cell-Dead"}/>)
       }
     </div>

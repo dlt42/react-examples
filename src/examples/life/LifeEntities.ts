@@ -15,12 +15,14 @@ export const colors: string[] = [
 
 export const lastColor: string = colors[colors.length-1];
 
+export type LifeTypes = boolean | number;
+
 export type LifeContainerProps = {
   width: number,
   height: number
 }
 
-export type LifeProps<T extends boolean | number> = {
+export type LifeProps<T extends LifeTypes> = {
   width: number,
   height: number,
   setInitialising: React.Dispatch<React.SetStateAction<boolean>>,
@@ -29,11 +31,11 @@ export type LifeProps<T extends boolean | number> = {
   lifeStore: AbstractLifeStore<T>
 }
 
-export type FastLifeProps<T  extends boolean | number> = LifeProps<T> & {
+export type FastLifeProps<T  extends LifeTypes> = LifeProps<T> & {
   size: number
 }
 
-export abstract class AbstractCell<T extends boolean | number> {
+export abstract class AbstractCell<T extends LifeTypes> {
   position: number;
   neighbourCells: AbstractCell<T>[];
   neighbourPositions: number[];
@@ -88,7 +90,7 @@ export abstract class AbstractCell<T extends boolean | number> {
   }
 }
 
-export abstract class AbstractLifeStore<T extends boolean | number> {
+export abstract class AbstractLifeStore<T extends LifeTypes> {
   cells!: AbstractCell<T>[];
   renderData: T[] = [];
 
