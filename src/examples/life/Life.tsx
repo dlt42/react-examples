@@ -6,8 +6,8 @@
 import { FC, memo, useEffect, useRef, useState } from "react";
 import { LifeProps } from "./LifeEntities";
 
-const Life: FC<LifeProps> = memo(({ width, height, setInitialising, increaseGenerations, lifeStore, paused }): JSX.Element => {
-  const [ renderData, setRenderData ] = useState<boolean[]>([]);
+const Life: FC<LifeProps<boolean | number>> = memo(({ width, height, setInitialising, increaseGenerations, lifeStore, paused }): JSX.Element => {
+  const [ renderData, setRenderData ] = useState<(number | boolean)[]>([]);
   
   // Ref for paused
   const isPaused = useRef<boolean>(paused); 
@@ -32,8 +32,8 @@ const Life: FC<LifeProps> = memo(({ width, height, setInitialising, increaseGene
   return (
     <div className="Life">
       {
-        renderData.map((state: boolean, index: number) => 
-          <div key={`${index}-${state}`} className={state?"Cell-Alive":"Cell-Dead"}/>)
+        renderData.map((state: number | boolean, index: number) => 
+          <div key={`${index}-${state}`} style={{ backgroundColor: lifeStore.getFillColor(state) }}  className={state?"Cell-Alive":"Cell-Dead"}/>)
       }
     </div>
   );
