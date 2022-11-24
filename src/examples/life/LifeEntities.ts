@@ -27,7 +27,7 @@ export type LifeProps<T extends LifeTypes> = {
   height: number,
   setInitialising: React.Dispatch<React.SetStateAction<boolean>>,
   paused: boolean,
-  increaseGenerations: React.DispatchWithoutAction,
+  setGenerations: React.DispatchWithoutAction,
   lifeStore: AbstractLifeStore<T>
 }
 

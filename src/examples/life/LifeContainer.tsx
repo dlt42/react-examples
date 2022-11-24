@@ -19,7 +19,7 @@ enum Speed {
 const LifeContainer: FC<LifeContainerProps> = memo((props): JSX.Element => {
   const { width, height } = props;
   const [ initialising, setInitialising ] = useState(true);
-  const [ generations, increaseGenerations ] = useReducer((prev: number): number => prev+1, 0);
+  const [ generations, setGenerations ] = useReducer((prev: number, value: number | undefined): number => value !== undefined ? value : prev+1, 0);
   const [ paused, setPaused] = useState(false);
   const [ speed, setSpeed] = useState<Speed>(Speed.SLOW);
   const [ lifeStore ] = useState<LifeStoreNumeric>(new LifeStoreNumeric(width, height));
@@ -28,7 +28,8 @@ const LifeContainer: FC<LifeContainerProps> = memo((props): JSX.Element => {
   useEffect(() => setInitialising(true), []);
   const reset = useCallback(() => {
     setPaused(true);
-    lifeStore.reset(width,height)
+    setGenerations(0);
+    lifeStore.reset(width,height);
     setPaused(false);
   }, [lifeStore, width, height]);
   return (
@@ -37,8 +38,8 @@ const LifeContainer: FC<LifeContainerProps> = memo((props): JSX.Element => {
       <>
         {
           speed === Speed.FAST
-          ? <FastLife {...{...props, setInitialising, paused, increaseGenerations, lifeStore, size: 4 } as FastLifeProps<LifeTypes>}/>
-          : <Life {...{...props, setInitialising, paused, increaseGenerations, lifeStore } as LifeProps<LifeTypes>} />
+          ? <FastLife {...{...props, setInitialising, paused, setGenerations: setGenerations, lifeStore, size: 4 } as FastLifeProps<LifeTypes>}/>
+          : <Life {...{...props, setInitialising, paused, setGenerations: setGenerations, lifeStore } as LifeProps<LifeTypes>} />
         }
         <div className="Life-Info">
           Total generations: {generations}

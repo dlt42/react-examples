@@ -7,7 +7,7 @@ import { FC, memo, useCallback, useEffect, useRef, useState } from "react"
 import CanvasWrapper, { DrawFunction } from "../../components/CanvasWrapper";
 import { FastLifeProps, LifeTypes } from "./LifeEntities";
  
-const FastLife: FC<FastLifeProps<LifeTypes>> = memo(({ width, height, setInitialising, increaseGenerations, lifeStore, paused, size}): JSX.Element => {
+const FastLife: FC<FastLifeProps<LifeTypes>> = memo(({ width, height, setInitialising, setGenerations, lifeStore, paused, size}): JSX.Element => {
   const [ attrs] = useState({ canvasAttrs: { width: width * size, height: height * size }});
 
   // Ref for paused so that it can be evaluated in the callback without it being updatd by paused being toggled  
@@ -17,29 +17,26 @@ const FastLife: FC<FastLifeProps<LifeTypes>> = memo(({ width, height, setInitial
       const render = () => {
         if (!isPaused.current) {
           lifeStore?.process();
-          increaseGenerations();
+          setGenerations();
         }
         setInitialising(false);
         context.clearRect(0, 0, context.canvas.width, context.canvas.height)
         const incX = context.canvas.width / width;
         const incY = context.canvas.height / height;
+        const sizeX = incX * .8;
+        const sizeY = incY * .8;
         lifeStore?.renderData.map((elem: LifeTypes, i: number) => {
           context.fillStyle = lifeStore.getFillColor(elem);
-          context.beginPath()
           const y = Math.floor(i / width)
           const x = i - (y * width);
-          context.rect(x * incX, y * incY, (x+1) * incX, (y+1) * incY);
-          context.fill();
-          context.closePath();
+          context.fillRect(x * incX, y * incY, sizeX, sizeY);
           return elem;
         });
       };
       render();
-  }, [lifeStore, width, height, increaseGenerations, setInitialising]);
+  }, [lifeStore, width, height, setGenerations, setInitialising]);
   return (
-    <div className="FastLife">
-      <CanvasWrapper draw={draw} {...attrs}/>;
-    </div>
+    <div className="FastLife"><CanvasWrapper draw={draw} {...attrs} /></div>
   );
 });
  

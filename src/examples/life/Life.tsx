@@ -6,7 +6,7 @@
 import { FC, memo, useEffect, useRef, useState } from "react";
 import { LifeProps, LifeTypes } from "./LifeEntities";
 
-const Life: FC<LifeProps<LifeTypes>> = memo(({ width, height, setInitialising, increaseGenerations, lifeStore, paused }): JSX.Element => {
+const Life: FC<LifeProps<LifeTypes>> = memo(({ width, height, setInitialising, setGenerations, lifeStore, paused }): JSX.Element => {
   const [ renderData, setRenderData ] = useState<LifeTypes[]>([]);
   
   // Ref for paused
@@ -21,14 +21,14 @@ const Life: FC<LifeProps<LifeTypes>> = memo(({ width, height, setInitialising, i
       if (!isPaused.current) {
         lifeStore.process();
         setRenderData(lifeStore.renderData);
-        increaseGenerations();
+        setGenerations();
       }
       setInitialising(false);
     }, 50);
     return () => {
       clearInterval(renderInterval); 
     }
-  }, [lifeStore, width, height, increaseGenerations, setInitialising]);
+  }, [lifeStore, width, height, setGenerations, setInitialising]);
   return (
     <div className="Life">
       {
