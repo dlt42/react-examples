@@ -4,39 +4,36 @@
  * See: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life 
  */
 import { FC, memo, useEffect, useRef, useState } from "react";
-import { LifeProps, LifeTypes } from "./LifeEntities";
+import { LifeTypes } from "./LifeAbstract";
+import { LifeSlowProps } from "./LifeEntities";
 
-const Life: FC<LifeProps<LifeTypes>> = memo(({ width, height, setInitialising, setGenerations, lifeStore, paused }): JSX.Element => {
+const LifeSlow: FC<LifeSlowProps<LifeTypes>> = memo(({ width, height, setInitialising, lifeStore, paused, rendered }): JSX.Element => {
   const [ renderData, setRenderData ] = useState<LifeTypes[]>([]);
   
-  // Ref for paused
+  // Ref for paused so that it can be evaluated in the callback without it being updatd by paused being toggled  
   const isPaused = useRef<boolean>(paused); 
-
-  // Every refresh update the ref
   useEffect(() => { isPaused.current = paused });
-
-  // So that paused can be evaluated in the effect below without it being triggered by paused being toggled  
   useEffect(() => {
     const renderInterval = setInterval(() => {
       if (!isPaused.current) {
         lifeStore.process();
-        setRenderData(lifeStore.renderData);
-        setGenerations();
       }
       setInitialising(false);
+      setRenderData(lifeStore.renderData);
+      rendered();
     }, 50);
     return () => {
       clearInterval(renderInterval); 
     }
-  }, [lifeStore, width, height, setGenerations, setInitialising]);
+  }, [rendered, lifeStore, width, height, setInitialising]);
   return (
     <div className="Life">
       {
         renderData.map((state: LifeTypes, index: number) => 
-          <div key={`${index}-${state}`} style={{ backgroundColor: lifeStore.getFillColor(state) }}  className={state?"Cell-Alive":"Cell-Dead"}/>)
+          <div key={`${index}-${state}`} style={{ backgroundColor: lifeStore.getFillColor(state) }}  className="Cell"/>)
       }
     </div>
   );
 });
 
-export default Life;
+export default LifeSlow;

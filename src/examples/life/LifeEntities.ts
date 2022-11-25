@@ -1,4 +1,24 @@
 
+import { AbstractCell, AbstractLifeStore, Cell, LifeTypes } from "./LifeAbstract";
+
+export type LifeContainerProps = {
+  width: number,
+  height: number
+}
+
+export type LifeSlowProps<T extends LifeTypes> = {
+  width: number,
+  height: number,
+  setInitialising: React.Dispatch<React.SetStateAction<boolean>>,
+  paused: boolean,
+  lifeStore: AbstractLifeStore<T>,
+  rendered: Function
+}
+
+export type LifeFastProps<T  extends LifeTypes> = LifeSlowProps<T> & {
+  size: number
+}
+
 export const colors: string[] = [
   "#000000",
   "#ff0000",
@@ -14,115 +34,11 @@ export const colors: string[] = [
 ];
 
 export const lastColor: string = colors[colors.length-1];
+export const lifeBooleanColor: string = '#FFF';
 
-export type LifeTypes = boolean | number;
+export type StoreTypes =  LifeStoreBoolean | LifeStoreNumeric;
 
-export type LifeContainerProps = {
-  width: number,
-  height: number
-}
-
-export type LifeProps<T extends LifeTypes> = {
-  width: number,
-  height: number,
-  setInitialising: React.Dispatch<React.SetStateAction<boolean>>,
-  paused: boolean,
-  setGenerations: React.DispatchWithoutAction,
-  lifeStore: AbstractLifeStore<T>
-}
-
-export type FastLifeProps<T  extends LifeTypes> = LifeProps<T> & {
-  size: number
-}
-
-export abstract class AbstractCell<T extends LifeTypes> {
-  position: number;
-  neighbourCells: AbstractCell<T>[];
-  neighbourPositions: number[];
-  state!: T;
-  pendingState: T;
-
-  abstract getInitialValue(): T; 
-  abstract setPendingState(count: number): void;
-
-  constructor(position: number, width: number, height: number) {
-    this.state = this.getInitialValue();
-    this.neighbourCells = [];
-    this.position = position;
-    this.pendingState = this.state;
-    this.neighbourPositions = [];
-    if (!this.neighbourPositions.length) {
-      const posY = Math.floor(this.position / width)
-      const posX = this.position - (posY * width);
-      for (let adjX = -1; adjX <= 1; adjX++) {
-        for (let adjY = -1; adjY <= 1; adjY++) {
-          if (adjY !== 0 || adjX !== 0) {
-            let partY = (((posY + adjY) % height) * width);
-            if (partY < 0) {
-              partY += width * height;
-            }
-            let partX = (posX + adjX) % width;
-            if (partX < 0) {
-              partX += width;
-            }
-            this.neighbourPositions.push( partY + partX);
-          }
-        }
-      }
-    }
-  }
-
-  public setNeighbourCells = (cells: AbstractCell<T>[]): void => {
-    this.neighbourCells = (this.neighbourPositions.map((position: number): AbstractCell<T> => cells[position]));
-  }
-
-  public prepare = (): void => {
-    const count: number = this.neighbourCells.reduce(
-      (count: number, current: AbstractCell<T>): number => {
-        return current.state ? count + 1 : count
-      }, 0)
-    this.setPendingState(count);
-  }
-
-  public transfer = (): T => {
-    this.state = this.pendingState;
-    return this.state;
-  }
-}
-
-export abstract class AbstractLifeStore<T extends LifeTypes> {
-  cells!: AbstractCell<T>[];
-  renderData: T[] = [];
-
-  constructor (width: number, height: number) {
-    this.reset(width, height);
-  }
-
-  abstract createCell(index: number, width: number, height: number): AbstractCell<T>; 
-  abstract getFillColor(state: T): string;
-
-  private transfer = () => {
-    this.renderData = this.cells.map((cell: AbstractCell<T>) => cell.transfer());
-  }
-
-  public reset = (width: number, height: number) => {
-    this.cells = Array.from(
-      Array( width * height ), 
-      (_, index, ) => this.createCell(index, width, height)
-    );
-    this.cells.forEach((cell: AbstractCell<T>, _, self: AbstractCell<T>[]) => {
-      cell.setNeighbourCells(self);
-    });
-    this.transfer();
-  }
-
-  public process = (): void => {
-    this.cells.forEach((cell: AbstractCell<T>) => cell.prepare());      
-    this.transfer();
-  } 
-}
-
-export class Cell extends AbstractCell<boolean>{
+export class CellBoolean extends AbstractCell<boolean>{
   public getInitialValue(): boolean {
     return Math.random() > .5 ? true : false;
   }
@@ -130,19 +46,13 @@ export class Cell extends AbstractCell<boolean>{
   public setPendingState(count: number): void {
     this.pendingState = (this.state ? count >= 2 && count <= 3 : count === 3);
   }
-}
 
-export class LifeStore extends AbstractLifeStore<boolean> {
-  public createCell(index: number, width: number, height: number): Cell {
-    return new Cell(index, width, height);
-  }
-
-  public getFillColor(state: boolean): string {
-    return state ? '#000' : '#FFF';
+  public transferOriginalState(original: Cell): void {
+      this.state = original instanceof CellBoolean ? original.state : (original.state > 0 ? true : false);
   }
 }
 
-export class CellNumeric extends AbstractCell<number>{
+export class CellNumeric extends AbstractCell<number> {
   public getInitialValue(): number {
     return Math.random() > .5 ? 1 : 0;
   }
@@ -154,11 +64,25 @@ export class CellNumeric extends AbstractCell<number>{
       this.pendingState = count === 3 ? 1 : 0;
     }
   }
+
+  public transferOriginalState(original: Cell): void {
+    this.state =  original instanceof CellNumeric ? original.state : (original.state ? 1 : 0);
+  }
+}
+
+export class LifeStoreBoolean extends AbstractLifeStore<boolean> {
+  public createCell(index: number, width: number, height: number, original?: Cell): CellBoolean {
+    return new CellBoolean(index, width, height, original);
+  }
+
+  public getFillColor(state: boolean): string {
+    return state ? lifeBooleanColor : colors[0];
+  }
 }
 
 export class LifeStoreNumeric extends AbstractLifeStore<number> {
-  public createCell(index: number, width: number, height: number): CellNumeric {
-    return new CellNumeric(index, width, height);
+  public createCell(index: number, width: number, height: number, original?: Cell): CellNumeric {
+    return new CellNumeric(index, width, height, original);
   }
 
   public getFillColor(state: number): string {

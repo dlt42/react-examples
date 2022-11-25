@@ -49,16 +49,7 @@
   width: 400px;
 }
 
-.Cell-Alive,
-.Cell-Dead {
+.Cell {
   width: .8%;
   height: .8%;
-}
-
-.Cell-Alive {
-  background-color: black;
-}
-
-.Cell-Dead {
-  background-color: white;
 }
