@@ -7,6 +7,7 @@ export interface AppNavProps {
 
 const AppNav: React.FC<AppNavProps> = ({ title }): JSX.Element => {
   const { Nav } = useNav();
+  document.title = title;
   return (
     <>
       <h1>{title}</h1>

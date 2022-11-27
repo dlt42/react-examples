@@ -3,7 +3,7 @@
  */
 
 import './App.css';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, HashRouter } from 'react-router-dom'
 import NotFoundPage from './pages/NotFoundPage';
 import HomePage from './pages/Home';
 import NavContext, { NavData } from './examples/hooks/custom-nav/navContext';
@@ -46,7 +46,7 @@ function App() {
     ]
   };
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="App">
         <div className="Page-Body">
           <NavContext.Provider value={navData}>
@@ -54,7 +54,7 @@ function App() {
           </NavContext.Provider>
         </div>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

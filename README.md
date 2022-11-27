@@ -8,6 +8,8 @@ Some examples are quite contrived, and bordering on overkill, but context helps.
 
 Friendly feedback welcome.
 
+This project can now be accessed at https://dlt42.github.io
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
