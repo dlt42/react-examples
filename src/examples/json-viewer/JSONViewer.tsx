@@ -23,30 +23,34 @@ const JSONViewerComponent: FC = (): JSX.Element => {
   if (error) {
     throw error;
   }
-  const [url, setUrl] = useState(
-    "http://openlibrary.org/search.json?q=the+lord+of+the+rings"
-  );
+  const [url, setUrl] = useState<string | null>(null);
+  const setExampleUrl = () => {
+    setUrl("https://openlibrary.org/search.json?q=the+lord+of+the+rings");
+  };
   const urlRef = useRef<HTMLInputElement>(null);
   const [json, setJson] = useState({});
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    setLoading(true);
-    fetchJson(url)
-      .then((value) => {
-        setJson(value);
-        setLoading(false);
-      })
-      .catch((e) =>
-        setError(
-          new ErrorWithContext(getErrorMessage(e), "JSONViewer > fetchJSON")
-        )
-      );
+    if (url !== null) {
+      setLoading(true);
+
+      fetchJson(url)
+        .then((value) => {
+          setJson(value);
+          setLoading(false);
+        })
+        .catch((e) =>
+          setError(
+            new ErrorWithContext(getErrorMessage(e), "JSONViewer > fetchJSON")
+          )
+        );
+    }
   }, [url]);
   useEffect(() => {
-    if (urlRef && urlRef.current) urlRef.current.value = url;
+    if (urlRef && urlRef.current) urlRef.current.value = url || "";
   }, [url, urlRef]);
   useEffect(() => {
-    if (!loading && urlRef && urlRef.current) urlRef.current.value = url;
+    if (!loading && urlRef && urlRef.current) urlRef.current.value = url || "";
   }, [loading, urlRef, url]);
   const submitRef = (e: MouseEvent) => {
     if (loading) {
@@ -66,6 +70,7 @@ const JSONViewerComponent: FC = (): JSX.Element => {
           <>
             <input type="text" ref={urlRef} />
             <button onClick={(e: MouseEvent) => submitRef(e)}>Fetch</button>
+            <button onClick={() => setExampleUrl()}>Fetch Example</button>
           </>
         )}
       </div>
