@@ -1,7 +1,7 @@
 /**
  * #USE_CALLBACK
  */
-import React, { useCallback, useReducer, useState } from "react";
+import { useCallback, useReducer, useState } from "react";
 import { logData } from "../../../global/util";
 import ExpressionElements from "./ExpressionElements";
 import { runFade } from "./tools";

@@ -1,0 +1,56 @@
+.OuterBlock {
+  margin: 10px;
+  gap: 10px;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.Block {
+  border: 1px solid black;
+  gap: 10px;
+  display: flex;
+  background-color: #eee;
+}
+
+.InnerBlock {
+  border: 1px solid black;
+  background-color: #ddd;
+  padding: 10px;
+  gap: 10px;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around;
+}
+
+.Description {
+  flex: 100% 1 1;
+}
+
+.ErrorProducer {
+  padding: 10px;
+  justify-content: center;
+  gap: 10px;
+  display: flex;
+  flex: 100% 1 1;
+  flex-flow: wrap;
+  border: 1px solid black;
+  background-color: #fff;
+}
+
+.ErrorMsg {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  text-align: justify;
+  vertical-align: middle;
+  flex: 100% 1 0;
+  text-align: center;
+}
+
+.InnerBlock h3 {
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+}

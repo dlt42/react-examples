@@ -2,7 +2,7 @@
  * #CREATE_CONTEXT
  */
 
-import React from "react";
+import { Context, createContext } from "react";
 import { NavLinkArray } from "./useNav";
 import { NavRouteArray } from "./useRoutes";
 
@@ -11,7 +11,7 @@ export interface NavData {
   routes: NavRouteArray
 };
 
-const NavContext: React.Context<NavData> = React.createContext<NavData>({   
+const NavContext: Context<NavData> = createContext<NavData>({   
   links: [],
   routes: []
 });

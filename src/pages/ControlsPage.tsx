@@ -1,4 +1,4 @@
-import React, { MouseEvent, useCallback, useState } from "react";
+import { MouseEvent, useCallback, useState } from "react";
 import AppNav from "../components/Header";
 import RadialSelect from "../examples/radial/RadialSelect";
 import { RadialSelectionTypes, RadialSelectProps } from "../examples/radial/RadialSelectSupport";

@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FC } from "react";
 import { useEffect, useState } from 'react';
 import AppNav from '../components/Header';
 import { Countries, selectCountries } from "../state/appSlice";
@@ -6,7 +6,7 @@ import { useAppSelector } from "../state/hooks";
 import CountryStats from "../examples/stats/CountryStats";
 import "./StatsPage.css";
   
-const StatsPage: FunctionComponent = (): JSX.Element => {
+const StatsPage: FC = (): JSX.Element => {
   const [ status, setStatus ] = useState('Loading');
   const countries: Countries = useAppSelector(selectCountries);
   useEffect(() => {

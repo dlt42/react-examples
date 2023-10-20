@@ -1,0 +1,9 @@
+.ErrorMessage {
+  margin: 20px;
+  text-align: center;
+}
+
+.ErrorMessage h3 {
+  margin-block-start: 0px;
+  margin-block-end: 10px;
+}

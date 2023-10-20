@@ -9,7 +9,7 @@
  *  Dynamically change the allowed range 
  */
 
-import React, { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { logData } from "../../../global/util";
 import styles from  './Counter.module.css';
 

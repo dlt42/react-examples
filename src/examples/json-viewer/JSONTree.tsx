@@ -1,7 +1,4 @@
-
-import React from "react";
-import { useState } from "react";
-
+import { FC, memo, useState } from "react";
 
 interface JSONTreeProps {
   elemKey: string | null,
@@ -14,7 +11,7 @@ interface JSONArrayItemProps {
   path: string
 }
 
-const JSONBlock: React.FC<JSONTreeProps> = React.memo((props): JSX.Element => {
+const JSONBlock: FC<JSONTreeProps> = memo((props): JSX.Element => {
   const { elemKey, elemValue, path } = props;
   const [ toggle, setToggle ] = useState(!path || !elemKey);
   const [ isArray ] = useState(Array.isArray(elemValue));
@@ -51,7 +48,7 @@ const JSONBlock: React.FC<JSONTreeProps> = React.memo((props): JSX.Element => {
   )
 })
 
-const JSONArrayItem: React.FC<JSONArrayItemProps> = React.memo((props): JSX.Element => {
+const JSONArrayItem: React.FC<JSONArrayItemProps> = memo((props): JSX.Element => {
   const { elemValue, path } = props;
   const [ hasValue ] = useState(elemValue !== undefined && elemValue !== null);
   const [ isObjectType ] = useState(hasValue && typeof elemValue === "object");
@@ -71,7 +68,7 @@ const JSONArrayItem: React.FC<JSONArrayItemProps> = React.memo((props): JSX.Elem
   )
 })
 
-const JSONTree: React.FC<JSONTreeProps> = React.memo((props): JSX.Element => {
+const JSONTree: React.FC<JSONTreeProps> = memo((props): JSX.Element => {
   const { elemKey, elemValue, path } = props;
   const hasValue = elemValue !== undefined && elemValue !== null;
   const isObjectType = hasValue && typeof elemValue === "object";

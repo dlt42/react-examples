@@ -2,7 +2,7 @@
 /**
  * #REACT.MEMO
  */
-import React, { useCallback, useState } from "react";
+import { FC, memo, useCallback, useState } from "react";
 import { ToArrayStrict } from "../../../global/types";
 import { logData } from "../../../global/util";
 import useInput from "./useInput";
@@ -68,7 +68,7 @@ const parseExpression = (rawExpression: string): ExperessionElementArray => {
   return rawExpression.split(expressionRegEx).map(convertPart);
 }
 
-export const OperatorElement: React.FC<OperatorProps> = React.memo(({ initial, valueChanged, index, id }): JSX.Element => {
+export const OperatorElement: FC<OperatorProps> = memo(({ initial, valueChanged, index, id }): JSX.Element => {
   const [ selectProps ] = useInput(initial, useCallback((value: OPERATORS) => valueChanged(value, index), [index, valueChanged]));
   
   logData(`Expression element ${index} rendered`);
@@ -83,7 +83,7 @@ export const OperatorElement: React.FC<OperatorProps> = React.memo(({ initial, v
   )
 })
 
-export const NumberElement: React.FC<NumberProps> = React.memo(({ initial, valueChanged, index, id }): JSX.Element => {
+export const NumberElement: FC<NumberProps> = memo(({ initial, valueChanged, index, id }): JSX.Element => {
   const [ inputProps ] = useInput(initial,  useCallback((value: number) => valueChanged(value, index), [index, valueChanged]));
   
   logData(`Expression element ${index + 1} rendered`);
@@ -96,7 +96,7 @@ export const NumberElement: React.FC<NumberProps> = React.memo(({ initial, value
   )
 })
 
-const ExpressionElements: React.FC<ExpressionElementsProps> = React.memo(({ initial, expressionChanged, id }): JSX.Element => {
+const ExpressionElements: FC<ExpressionElementsProps> = memo(({ initial, expressionChanged, id }): JSX.Element => {
   const [ expression ] = useState(parseExpression(initial));
   const elementCallback = useCallback((part: UnparsedExperessionElement, index: number) => {
     expression[index] = convertPart(part);

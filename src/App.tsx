@@ -3,7 +3,7 @@
  */
 
 import './App.css';
-import { BrowserRouter, HashRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import NotFoundPage from './pages/NotFoundPage';
 import HomePage from './pages/Home';
 import NavContext, { NavData } from './examples/hooks/custom-nav/navContext';
@@ -17,8 +17,11 @@ import { useEffect } from 'react';
 import DataLoader from './global/DataLoader';
 import ControlsPage from './pages/ControlsPage';
 import LifePage from './pages/LifePage';
+import { useError } from './error/ErrorContext';
+import ErrorBoundary from './error/ErrorBoundary';
+import ErrorTestPage from './pages/ErrorTestPage';
 
-function App() {
+const AppComponent = () => {
   const appDispatch = useAppDispatch();
   useEffect(() => { 
     new DataLoader().loadCountries(appDispatch)
@@ -31,8 +34,8 @@ function App() {
       { to :'/country_stats', label: 'World Map' },
       { to :'/sunburst', label: 'Charts' },
       { to :'/controls', label: 'Controls' },
-      { to :'/life', label: 'Game of Life' }  
-
+      { to :'/life', label: 'Game of Life' },
+      { to :'/errorTest', label: 'Error Test' }
     ], 
     routes: [
       { path: '/', element: <HomePage /> },
@@ -42,6 +45,7 @@ function App() {
       { path: '/sunburst', element: <ChartPage />},
       { path: '/controls', element: <ControlsPage />},
       { path: '/life', element: <LifePage />},
+      { path: '/errorTest', element: <ErrorTestPage />},
       { path: '*', element: <NotFoundPage/> }
     ]
   };
@@ -57,5 +61,19 @@ function App() {
     </HashRouter>
   );
 }
+
+export const App = () => {
+  const { handleError } = useError();
+  return (
+    <ErrorBoundary
+      handleError={handleError}
+      currentError={null}
+      boundaryLocation="AppWrapper"
+      throwUnhandled={false}
+    >
+      <AppComponent />
+    </ErrorBoundary>
+  );
+};
 
 export default App;
