@@ -38,13 +38,9 @@ export default class ErrorBoundary extends Component<
       }
       return;
     }
-    const processederror = 
-    handleError(
-      new ErrorWithContext(
-        getErrorMessage(error),
-        `Error caught by ErrorBoundary in ${boundaryLocation}`
-      )
-    );
+    const msg = getErrorMessage(error);
+    const context = `Error caught by ErrorBoundary in ${boundaryLocation}`;
+    handleError(new ErrorWithContext(msg, context));
   }
 
   public render(): JSX.Element {
