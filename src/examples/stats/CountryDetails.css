@@ -8,7 +8,7 @@
   flex-wrap: nowrap;
   border: 1px solid #333;
   flex: 0 1 50%;
-  padding: 5px;;
+  padding: 5px;
 }
 
 .Country-Details-Text > div {
@@ -21,7 +21,7 @@
   flex-direction: row;
   justify-content: center;
   border: 1px solid #333;
-  background-color: #D6D6DA;
+  background-color: #d6d6da;
   flex: 0 1 50%;
   padding: 5px;
   align-items: center;
@@ -52,7 +52,7 @@
   margin: 5px;
   max-height: 120px;
   height: 120px;
-  min-height: 120px
+  min-height: 120px;
 }
 
 .Country-Details-Image img {

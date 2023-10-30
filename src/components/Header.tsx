@@ -1,19 +1,20 @@
-import useNav from "../examples/hooks/custom-nav/useNav";
-import './Header.module.css'
+import { FC } from 'react';
 
-export interface AppNavProps {
-  title: string
-}
+import useNav from '../examples/hooks/custom-nav/useNav';
 
-const AppNav: React.FC<AppNavProps> = ({ title }): JSX.Element => {
+type HeaderProps = {
+  title: string;
+};
+
+const Header: FC<HeaderProps> = ({ title }): JSX.Element => {
   const { Nav } = useNav();
   document.title = title;
   return (
     <>
-      <h1>{title}</h1>
+      <div className='p-6 text-4xl font-bold'>{title}</div>
       <Nav />
     </>
-  )
+  );
 };
 
-export default AppNav;
+export default Header;

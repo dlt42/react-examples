@@ -14,22 +14,23 @@
 }
 
 .Viewer-Input {
-  background-color: #282c34;
+  background-color: #d6d6da;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
   padding: 5px;
 }
 
 .Viewer-Input > * {
   margin: 5px;
 }
- 
+
 .Viewer-Input > input {
   flex-grow: 1;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 5px;
 }
 
 .Json-Attribute-Name {
@@ -47,17 +48,6 @@
   background-color: white;
 }
 
-.Json-Attribute-Name button {
-  max-height: 20px;
-  min-height: 20px;
-  flex-shrink: 1;
-  max-width: 20px;
-  min-width: 20px;
-  padding: 0;
-  width: 20px;
-  height: 20px;
-}
-
 .Json-Attribute-Value-Color {
   background-color: #cdefd2;
 }
@@ -72,9 +62,8 @@
   flex-grow: 1;
   background-color: #cdefd2;
   border-left: 1px solid black;
-  word-break: break-all
+  word-break: break-all;
 }
-
 
 .Json-Array,
 .Json-Object {
@@ -92,6 +81,17 @@
   margin: 5px;
   margin-bottom: 0;
   background-color: white;
+}
+
+.Json-Attribute-Name > div {
+  align-items: start;
+}
+
+.Json-Attribute-Name button {
+  font-size: 10px;
+  padding: 0px 5px;
+  line-height: 1rem;
+  color: black;
 }
 
 .Json-Root,
@@ -133,7 +133,7 @@
   margin: 5px;
   margin-bottom: 0;
   border: 1px solid black;
-  min-height: 14px;
+  min-height: 28px;
 }
 
 .Json-Array > .Json-Attribute-Value:last-of-type {
@@ -146,8 +146,8 @@
 
 .Key-Container {
   display: flex;
-    justify-content: center;
-    flex-direction: row;
+  justify-content: center;
+  flex-direction: row;
 }
 
 .Key-Container > div {

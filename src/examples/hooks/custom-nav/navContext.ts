@@ -1,19 +1,16 @@
-/**
- * #CREATE_CONTEXT
- */
+import { Context, createContext } from 'react';
 
-import { Context, createContext } from "react";
-import { NavLinkArray } from "./useNav";
-import { NavRouteArray } from "./useRoutes";
+import { NavRouteArray } from './NavRoutes.types';
+import { NavLinkArray } from './useNav.types';
 
-export interface NavData {
-  links: NavLinkArray
-  routes: NavRouteArray
+export type NavData = {
+  links: NavLinkArray;
+  routes: NavRouteArray;
 };
 
-const NavContext: Context<NavData> = createContext<NavData>({   
+const NavContext: Context<NavData> = createContext<NavData>({
   links: [],
-  routes: []
+  routes: [],
 });
 
 export default NavContext;

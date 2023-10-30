@@ -1,1 +1,1 @@
-export type ToArrayStrict<Type> = [Type] extends [any] ? Type[] : never;
+export type ToArrayStrict<Type> = [Type] extends [unknown] ? Type[] : never;

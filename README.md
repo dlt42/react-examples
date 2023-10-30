@@ -10,49 +10,61 @@ Friendly feedback welcome.
 
 This project can now be accessed at https://dlt42.github.io
 
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
+# Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run dev`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Run the app on a local server with fast reloading using vite at `http://localhost:5173/`
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Build the app with generated files output to the `./build` folder
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `npm run eslint`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Run lint checks using es-lint and the associated config, helping to identify bugs and ensure consistency 
 
-### `npm run eject`
+### `npm run eslint-fix`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Run lint checks using es-lint and the associated config, applying fixes for identified bugs or changes to ensure consistency (where possible)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `npm run preview`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Run a local static web server that serves the files from `./dist` at `http://localhost:4173`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### `npm run typecheck`
 
-## Learn More
+Checks variable types throughout the code
+    
+### `npm run lint`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Runs the `eslint` and `typecheck` scripts
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `npm run lint-fix`
+
+Runs the `eslint-fix` and `typecheck` scripts
+
+### `npm run test`
+
+Runs the unit tests using vitest
+
+### `npm run coverage`
+
+Evaluates unit test coverage using vitest
+
+### `npm run format`
+
+Formats all source code using prettier
+
+# TODO
+
+- Add unit tests
+- Add coverage checks
+- Finish transfer of CSS to tailwind
+- Add controls for adding / removing elements in expression editor
+- Add more examples
+- Add explanation popup for examples
+- Improve overall look and feel
+- Add mandelbrot set viewer

@@ -1,20 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit';
-import appSlice from './appSlice'; 
 import {
-  persistStore,
-  persistReducer,
   FLUSH,
-  REHYDRATE,
   PAUSE,
   PERSIST,
+  persistReducer,
+  persistStore,
   PURGE,
   REGISTER,
-} from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+  REHYDRATE,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
+import appSlice from './appSlice';
 
 const persistConfig = {
-  key: 'root',
+  key: `root`,
   version: 1,
   storage,
 };
@@ -24,17 +24,17 @@ const store = configureStore({
     app: persistedAppReducer,
   },
   middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware({
-          serializableCheck: {
-              ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-          },
-      }),
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 const persistor = persistStore(store);
 
-
 export type RootState = ReturnType<typeof store.getState>;
+
 export type AppDispatch = typeof store.dispatch;
 
-export { store, persistor };
+export { persistor, store };

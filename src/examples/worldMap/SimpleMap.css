@@ -3,19 +3,6 @@ svg {
   vertical-align: middle;
 }
 
-.Map-Container svg {
-  border: 1px solid #333;
-  margin: 5px;
-  flex-grow: 1;
-}
-
-.Map-Container h3 {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  margin: 5px;
-  padding: 5px;
-}
-
 .Tooltip {
   position: absolute;
   display: block;

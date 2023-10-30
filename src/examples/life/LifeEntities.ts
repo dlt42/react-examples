@@ -1,60 +1,52 @@
-
-import { AbstractCell, AbstractLifeStore, Cell, LifeTypes } from "./LifeAbstract";
+import {
+  AbstractCell,
+  AbstractLifeStore,
+  Cell,
+  LifeTypes,
+} from './LifeAbstract';
 
 export type LifeContainerProps = {
-  width: number,
-  height: number
-}
+  width: number;
+  height: number;
+};
 
 export type LifeSlowProps<T extends LifeTypes> = {
-  width: number,
-  height: number,
-  setInitialising: React.Dispatch<React.SetStateAction<boolean>>,
-  paused: boolean,
-  lifeStore: AbstractLifeStore<T>,
-  rendered: Function
-}
+  width: number;
+  height: number;
+  setInitialising: React.Dispatch<React.SetStateAction<boolean>>;
+  paused: boolean;
+  lifeStore: AbstractLifeStore<T>;
+  rendered: Function;
+};
 
-export type LifeFastProps<T  extends LifeTypes> = LifeSlowProps<T> & {
-  size: number
-}
+export type LifeFastProps<T extends LifeTypes> = LifeSlowProps<T> & {
+  size: number;
+};
 
-export const colors: string[] = [
-  "#000000",
-  "#ff0000",
-  "#ff8c00",
-  "#e1ff00",
-  "#55ff00",
-  "#00ff37",
-  "#00ffc8",
-  "#00aaff",
-  "#001eff",
-  "#7300ff",
-  "#ff00ff"
-];
+export type StoreTypes = LifeStoreBoolean | LifeStoreNumeric;
 
-export const lastColor: string = colors[colors.length-1];
-export const lifeBooleanColor: string = '#FFF';
-
-export type StoreTypes =  LifeStoreBoolean | LifeStoreNumeric;
-
-export class CellBoolean extends AbstractCell<boolean>{
+class CellBoolean extends AbstractCell<boolean> {
   public getInitialValue(): boolean {
-    return Math.random() > .5 ? true : false;
+    return Math.random() > 0.5 ? true : false;
   }
 
   public setPendingState(count: number): void {
-    this.pendingState = (this.state ? count >= 2 && count <= 3 : count === 3);
+    this.pendingState = this.state ? count >= 2 && count <= 3 : count === 3;
   }
 
   public transferOriginalState(original: Cell): void {
-      this.state = original instanceof CellBoolean ? original.state : (original.state > 0 ? true : false);
+    if (original instanceof CellBoolean) {
+      this.state = original.state;
+    }
+    if (original instanceof CellNumeric) {
+      this.state = original.state > 0 ? true : false;
+    }
   }
 }
 
-export class CellNumeric extends AbstractCell<number> {
+class CellNumeric extends AbstractCell<number> {
   public getInitialValue(): number {
-    return Math.random() > .5 ? 1 : 0;
+    return Math.random() > 0.5 ? 1 : 0;
   }
 
   public setPendingState(count: number): void {
@@ -66,26 +58,29 @@ export class CellNumeric extends AbstractCell<number> {
   }
 
   public transferOriginalState(original: Cell): void {
-    this.state =  original instanceof CellNumeric ? original.state : (original.state ? 1 : 0);
+    this.state =
+      original instanceof CellNumeric ? original.state : original.state ? 1 : 0;
   }
 }
 
 export class LifeStoreBoolean extends AbstractLifeStore<boolean> {
-  public createCell(index: number, width: number, height: number, original?: Cell): CellBoolean {
+  public createCell(
+    index: number,
+    width: number,
+    height: number,
+    original?: Cell
+  ): CellBoolean {
     return new CellBoolean(index, width, height, original);
-  }
-
-  public getFillColor(state: boolean): string {
-    return state ? lifeBooleanColor : colors[0];
   }
 }
 
 export class LifeStoreNumeric extends AbstractLifeStore<number> {
-  public createCell(index: number, width: number, height: number, original?: Cell): CellNumeric {
+  public createCell(
+    index: number,
+    width: number,
+    height: number,
+    original?: Cell
+  ): CellNumeric {
     return new CellNumeric(index, width, height, original);
-  }
-
-  public getFillColor(state: number): string {
-    return state < colors.length ? colors[state] : lastColor;
   }
 }

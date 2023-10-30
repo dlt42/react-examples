@@ -1,22 +1,25 @@
-import { Component } from "react";
-import { ErrorWithContext, HandleError } from "./ErrorContext";
-import { ErrorMessage, getErrorMessage } from "./ErrorMessage";
-import styles from "./ErrorBoundary.module.css";
+import { Component } from 'react';
 
-interface IErrorBoundaryState {
+import Button from '../components/Button';
+import styles from './ErrorBoundary.module.css';
+import { ErrorWithContext, HandleError } from './ErrorContext';
+import { ErrorMessage } from './ErrorMessage';
+import { getErrorMessage } from './utils';
+
+type IErrorBoundaryState = {
   error: Error | null;
-}
+};
 
-interface IErrorBoundaryProps {
+type IErrorBoundaryProps = {
   children: JSX.Element;
   handleError: HandleError | null;
   currentError: Error | null;
   boundaryLocation: string;
   throwUnhandled: boolean;
   className?: string;
-}
+};
 
-export default class ErrorBoundary extends Component<
+class ErrorBoundary extends Component<
   IErrorBoundaryProps,
   IErrorBoundaryState
 > {
@@ -55,16 +58,18 @@ export default class ErrorBoundary extends Component<
       <div className={className && styles.ErrorBoundary}>
         Error handled by ErrorBoundary in {boundaryLocation}:
         <ErrorMessage error={error} />
-        <button
+        <Button
           onClick={() => {
             clear();
           }}
         >
           Clear
-        </button>
+        </Button>
       </div>
     ) : (
       children
     );
   }
 }
+
+export default ErrorBoundary;

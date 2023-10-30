@@ -1,48 +1,61 @@
-import { MouseEvent, useCallback, useState } from "react";
-import AppNav from "../components/Header";
-import RadialSelect from "../examples/radial/RadialSelect";
-import { RadialSelectionTypes, RadialSelectProps } from "../examples/radial/RadialSelectSupport";
 import './ControlsPage.css';
 
-const ControlsPage: React.FunctionComponent = (): JSX.Element => {
+import { FC, MouseEvent, useCallback, useState } from 'react';
+
+import Header from '../components/Header';
+import RadialSelect from '../examples/radial/RadialSelect';
+import {
+  RadialSelectionTypes,
+  RadialSelectProps,
+} from '../examples/radial/RadialSelectSupport';
+
+const ControlsPage: FC = (): JSX.Element => {
   const [value, setValue] = useState<RadialSelectionTypes | null>();
-  const onChange = useCallback((e: MouseEvent, value: RadialSelectionTypes) => {
-    setValue(value);
-  }, []);
+  const onChange = useCallback(
+    (_e: MouseEvent, value: RadialSelectionTypes) => {
+      setValue(value);
+    },
+    []
+  );
   const radialSelectProps: RadialSelectProps<RadialSelectionTypes> = {
-    label: "Select Option",
-    selectedLabel: "Selected:",
+    label: `Select Option`,
+    selectedLabel: `Selected:`,
     onChange: onChange,
     options: [
-      { value: "A", label: "Option A" },
-      { value: "B", label: "Option B" },
-      { value: "C", label: "Option C" },
-      { value: "D", label: "Option D" },
-      { value: "E", label: "Option E" },
-      { value: "F", label: "Option F" },
-      { value: "G", label: "Option G" }
+      { value: `A`, label: `Option A` },
+      { value: `B`, label: `Option B` },
+      { value: `C`, label: `Option C` },
+      { value: `D`, label: `Option D` },
+      { value: `E`, label: `Option E` },
+      { value: `F`, label: `Option F` },
+      { value: `G`, label: `Option G` },
     ],
-    selected: "",
+    selected: ``,
     diameter: 300,
     itemDiameter: 80,
-    centerDiameter: 120
-  }
+    centerDiameter: 120,
+  };
   return (
     <>
       <header>
-        <AppNav title='Controls'/>
+        <Header title='Controls' />
       </header>
       <main>
-        <section className="Controls-Section">
+        <section className='Controls-Section'>
           <h3>Radial Select</h3>
           <div>(for a small number of options)</div>
-          <div className="Radial-Output">Currently selected: { value ? radialSelectProps.options.filter(o => value === o.value)[0].label : 'nothing'} </div>
-          <RadialSelect {...radialSelectProps}/>
+          <div className='Radial-Output'>
+            Currently selected:
+            {value
+              ? radialSelectProps.options.filter((o) => value === o.value)[0]
+                  .label
+              : `nothing`}
+          </div>
+          <RadialSelect {...radialSelectProps} />
         </section>
-        
       </main>
     </>
-  )
-}
+  );
+};
 
 export default ControlsPage;

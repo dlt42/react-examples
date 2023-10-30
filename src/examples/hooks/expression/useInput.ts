@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useState } from "react";
+import { ChangeEventHandler, useState } from 'react';
 
 export type ResetValue = () => void;
 
@@ -8,16 +8,16 @@ export type Validator<T> = (prevValue: T, nextValue: T) => T;
 
 export type ValueChangedCallback<T> = (value: T) => void;
 
-export interface InputProps<T> {
-  value: T,
-  onChange: ChangeEventHandler<any>
-}
+export type InputProps<T> = {
+  value: T;
+  onChange: ChangeEventHandler<HTMLInputElement | HTMLSelectElement>;
+};
 
 export function useInput<T>(
   initialValue: T,
   valueChanged: ValueChangedCallback<T>,
   validator?: Validator<T>
-): [InputProps<T>, ResetValue, SetValue<T> ] {
+): [InputProps<T>, ResetValue, SetValue<T>] {
   const [value, setValue] = useState<T>(initialValue);
   const set = (newValue: T): void => {
     const processedValue = validator ? validator(value, newValue) : newValue;
@@ -26,10 +26,11 @@ export function useInput<T>(
   };
   const reset = () => set(initialValue);
   const props: InputProps<T> = {
-      value,
-      onChange: e => set(e.target.value)
+    value,
+
+    onChange: (e) => set(e.target.value as unknown as T),
   };
   return [props, reset, set];
-} 
+}
 
 export default useInput;

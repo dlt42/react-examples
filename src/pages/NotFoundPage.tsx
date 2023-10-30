@@ -1,10 +1,11 @@
-import * as React from "react";
-import AppNav from "../components/Header";
+import { FC } from 'react';
 
-const NotFoundPage: React.FunctionComponent = (): JSX.Element => (
+import Header from '../components/Header';
+
+const NotFoundPage: FC = (): JSX.Element => (
   <>
     <header>
-      <AppNav title='Not Found'/>
+      <Header title='Not Found' />
     </header>
     <main>
       <section>
@@ -12,6 +13,6 @@ const NotFoundPage: React.FunctionComponent = (): JSX.Element => (
       </section>
     </main>
   </>
-)
+);
 
 export default NotFoundPage;

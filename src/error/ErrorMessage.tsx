@@ -1,10 +1,11 @@
-import { FC } from "react";
-import styles from "./ErrorMessage.module.css";
+import { FC } from 'react';
 
-export const getErrorMessage = (error: Error | unknown) =>
-  error && error instanceof Error ? error.message : JSON.stringify(error);
+import styles from './ErrorMessage.module.css';
+import { getErrorMessage } from './utils';
 
-export const ErrorMessage: FC<{ error: Error | unknown }> = ({ error }) => (
+type ErrorMessageProps = { error: Error };
+
+export const ErrorMessage: FC<ErrorMessageProps> = ({ error }) => (
   <div className={styles.ErrorMessage}>
     <h3>An error has occured</h3>
     <p>{getErrorMessage(error)}</p>

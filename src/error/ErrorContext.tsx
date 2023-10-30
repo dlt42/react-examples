@@ -1,6 +1,9 @@
-import { createContext, useContext, useState, useMemo, ReactNode } from "react";
-import { ErrorMessage, getErrorMessage } from "./ErrorMessage";
-import styles from "./ErrorContext.module.css";
+import { createContext, ReactNode, useMemo, useState } from 'react';
+
+import Button from '../components/Button';
+import styles from './ErrorContext.module.css';
+import { ErrorMessage } from './ErrorMessage';
+import { getErrorMessage } from './utils';
 
 export type HandleError = (error: Error | null) => void;
 
@@ -19,14 +22,14 @@ type ErrorContextType = {
   handleError: HandleError;
 };
 
-const ErrorContext = createContext<ErrorContextType>(null!);
+export const ErrorContext = createContext<ErrorContextType>(null!);
 
 export function ErrorProvider({ children }: { children: ReactNode }) {
   const [error, setError] = useState<Error | null>(null);
   const value = useMemo(() => {
     const handleError: HandleError = (errorToHandle) => {
       setError(
-        new ErrorWithContext(getErrorMessage(errorToHandle), "ErrorContext")
+        new ErrorWithContext(getErrorMessage(errorToHandle), 'ErrorContext')
       );
     };
     return { error, handleError };
@@ -34,23 +37,19 @@ export function ErrorProvider({ children }: { children: ReactNode }) {
   return (
     <ErrorContext.Provider value={value}>
       {error !== null ? (
-        <>
-          <div className={styles.ErrorContext}>
-            Error handled by error context: <ErrorMessage error={error} />
-            <button
-              onClick={() => {
-                setError(null);
-              }}
-            >
-              Clear
-            </button>
-          </div>
-        </>
+        <div className={styles.ErrorContext}>
+          Error handled by error context: <ErrorMessage error={error} />
+          <Button
+            onClick={() => {
+              setError(null);
+            }}
+          >
+            Clear
+          </Button>
+        </div>
       ) : (
         children
       )}
     </ErrorContext.Provider>
   );
 }
-
-export const useError = () => useContext(ErrorContext);

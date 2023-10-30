@@ -1,11 +1,12 @@
-import * as React from "react";
-import AppNav from "../components/Header";
-import JSONViewer from "../examples/json-viewer/JSONViewer";
+import { FC } from 'react';
 
-const JSONViewerPage: React.FunctionComponent = (): JSX.Element => (
+import Header from '../components/Header';
+import JSONViewer from '../examples/json-viewer/JSONViewer';
+
+const JSONViewerPage: FC = (): JSX.Element => (
   <>
     <header>
-      <AppNav title='JSON Viewer'/>
+      <Header title='JSON Viewer' />
     </header>
     <main>
       <section>
