@@ -50,7 +50,7 @@ export const NumberElement: FC<NumberProps> = memo(
           <div className='flex min-w-[46px] justify-center overflow-hidden'>
             <input
               id={id}
-              className='expressionField fieldFadeInitBlack fieldFadeBorderRed min-w-[40px] max-w-full border-2 border-solid border-gray-800 p-1'
+              className='expressionField fieldFadeInitBlack fieldFadeBorderRed h-[2rem] min-w-[40px] max-w-full border-2 border-solid border-gray-800 p-1'
               type='number'
               {...inputProps}
               pattern='[0-9]+'

@@ -56,7 +56,7 @@ export const OperatorElement: FC<OperatorProps> = memo(
             <select
               id={id}
               {...selectProps}
-              className='expressionField fieldFadeInitBlack fieldFadeBorderRed min-w-[40px] max-w-full border-2 border-solid border-gray-800 p-1'
+              className='expressionField fieldFadeInitBlack fieldFadeBorderRed h-[2rem] min-w-[40px] max-w-full border-2 border-solid border-gray-800 p-1'
             >
               {operations.map((operation: OPERATORS) => (
                 <option key={operation} value={operation}>
