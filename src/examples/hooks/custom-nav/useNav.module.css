@@ -14,7 +14,7 @@
 .NavLink {
   border: 1px solid #2b2b2b;
   background-color: #fff;
-  color: 1px solid #2b2b2b;
+  color: #2b2b2b;
   display: block;
   padding: 0;
   margin: 5px;
@@ -36,6 +36,7 @@
   text-decoration: none;
   display: block;
   padding: 5px;
+  text-wrap: nowrap;
 }
 
 .NavLinkCurrent a {

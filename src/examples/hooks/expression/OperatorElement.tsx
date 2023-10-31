@@ -44,7 +44,7 @@ export const OperatorElement: FC<OperatorProps> = memo(
       },
       `OperatorElement`
     );
-    runFadeField(id);
+    runFadeField(`${id}-outer`);
 
     return (
       <Container border={false} padding={false}>
@@ -52,14 +52,21 @@ export const OperatorElement: FC<OperatorProps> = memo(
           Operator
         </div>
         <Container border={false} padding={false}>
-          <div className='flex min-w-[46px] justify-center overflow-hidden'>
+          <div
+            id={`${id}-outer`}
+            className='fieldFadeInitBlack fieldFadeBorderRed flex min-w-[46px] justify-center overflow-hidden'
+          >
             <select
               id={id}
               {...selectProps}
-              className='expressionField fieldFadeInitBlack fieldFadeBorderRed h-[2rem] min-w-[40px] max-w-full border-2 border-solid border-gray-800 p-1'
+              className='h-[2rem] min-w-[40px] max-w-full border-0 pt-0 outline-0'
             >
               {operations.map((operation: OPERATORS) => (
-                <option key={operation} value={operation}>
+                <option
+                  key={operation}
+                  value={operation}
+                  className='text-center'
+                >
                   {operation}
                 </option>
               ))}

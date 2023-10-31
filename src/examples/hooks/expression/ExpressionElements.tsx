@@ -86,6 +86,13 @@ const ExpressionElements: FC<ExpressionElementsProps> = memo(
                   />
                 )
             )}
+            {typeof expressionElements[expressionElements.length - 1] ===
+            `number` ? (
+              <div
+                id={`${id}-outer`}
+                className=' flex min-w-[46px] justify-center overflow-hidden'
+              />
+            ) : null}
           </form>
         </Container>
       </Container>

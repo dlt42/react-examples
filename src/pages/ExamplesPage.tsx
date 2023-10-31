@@ -4,6 +4,7 @@ import Button from '../components/Button';
 import CanvasWrapper, { DrawFunction } from '../components/CanvasWrapper';
 import Container from '../components/Container';
 import Description from '../components/Description';
+import Details from '../components/Details';
 import Header from '../components/Header';
 import Section from '../components/Section';
 import Counter from '../examples/hooks/counter/Counter';
@@ -32,15 +33,32 @@ const ExamplesPage: FC = (): JSX.Element => {
       </header>
       <main>
         <Section>
-          <Description text='Example: Counter controls with useEffect, useState and useReducer' />
+          <Description text='Example: Counter' />
+          <Details
+            label='Details'
+            content={[
+              'Uses the following hooks:',
+              ['useEffect', 'useState', 'useReducer'],
+            ]}
+          />
           <Container>
             <Counter initialCounterValue={-5} />
           </Container>
         </Section>
         <Section>
-          <Description
-            text='Example: Expression editor with useCallback, useReducer, useState, memo and custom
-            hook useInput'
+          <Description text='Example: Expression editor' />
+          <Details
+            label='Details'
+            content={[
+              'Uses the following hooks:',
+              [
+                'useCallback',
+                'useReducer',
+                'useState',
+                'memo',
+                'useInput (custom hook)',
+              ],
+            ]}
           />
           <Container>
             <Button
@@ -52,7 +70,11 @@ const ExamplesPage: FC = (): JSX.Element => {
           </Container>
         </Section>
         <Section>
-          <Description text='Example: Simple animation using a wrapped canvas component' />
+          <Description text='Example: Simple animation' />
+          <Details
+            label='Details'
+            content={['Uses a wrapped canvas component']}
+          />
           <Container>
             <CanvasWrapper draw={draw} width={200} height={200} />
           </Container>

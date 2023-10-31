@@ -39,7 +39,7 @@ export const NumberElement: FC<NumberProps> = memo(
       },
       `NumberElement`
     );
-    runFadeField(id);
+    runFadeField(`${id}-outer`);
 
     return (
       <Container border={false} padding={false}>
@@ -47,10 +47,13 @@ export const NumberElement: FC<NumberProps> = memo(
           Number
         </div>
         <Container border={false} padding={false}>
-          <div className='flex min-w-[46px] justify-center overflow-hidden'>
+          <div
+            id={`${id}-outer`}
+            className='fieldFadeInitBlack fieldFadeBorderRed flex min-w-[46px] justify-center overflow-hidden'
+          >
             <input
               id={id}
-              className='expressionField fieldFadeInitBlack fieldFadeBorderRed h-[2rem] min-w-[40px] max-w-full border-2 border-solid border-gray-800 p-1'
+              className='h-[2rem] min-w-[40px] max-w-full border-0 p-1 outline-0'
               type='number'
               {...inputProps}
               pattern='[0-9]+'
