@@ -28,7 +28,7 @@ const AppComponent = () => {
       { to: '/examples', label: 'Examples' },
       { to: '/json_viewer', label: 'JSON Viewer' },
       { to: '/world_map', label: 'World Map' },
-      { to: '/sunburst', label: 'Charts' },
+      { to: '/charts', label: 'Charts' },
       { to: '/controls', label: 'Controls' },
       { to: '/life', label: 'Game of Life' },
       { to: '/errorTest', label: 'Error Test' },
