@@ -9,3 +9,6 @@ export const logData = (
     `${location ? `${location} ` : ``}\n\n
     ${message}${data ? ` => ${JSON.stringify(data)}` : ``}\n\n`
   );
+
+export const getErrorMessage = (error: unknown) =>
+  error && error instanceof Error ? error.message : JSON.stringify(error);

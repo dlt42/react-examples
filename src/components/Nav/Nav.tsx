@@ -3,7 +3,7 @@ import './Nav.css';
 import { FC, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import NavContext from '../../context/navContext';
+import NavContext from '../../context/navContext/navContext';
 
 const Nav: FC = (): JSX.Element => {
   const { links } = useContext(NavContext);

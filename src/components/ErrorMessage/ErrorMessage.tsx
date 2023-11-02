@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { getErrorMessage } from '../../error/utils';
+import { getErrorMessage } from '../../global/util';
 import { ErrorMessageProps } from './ErrorMessage.types';
 
 export const ErrorMessage: FC<ErrorMessageProps> = ({ error }) => (

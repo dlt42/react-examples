@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-import { Countries, Country, setCountries } from '../state/appSlice';
+import {
+  Countries,
+  Country,
+} from '../pages/world-map-page/country/Country.types';
+import { setCountries } from '../state/appSlice';
 import { AppDispatch } from '../state/store';
 
 export default class DataLoader {
@@ -9,7 +13,7 @@ export default class DataLoader {
       const res: { data: Country[] } = await axios.get(
         `https://restcountries.com/v2/all?fields=name,capital,region,subregion,population,alpha3Code,flag,altSpellings`
       );
-      res.data.forEach((current: Country) => {
+      res.data.forEach((current) => {
         current.key = `${current.name}-${current.alpha3Code}`;
         current.shortName = current.name;
         if (current.altSpellings) {

@@ -1,7 +1,7 @@
 import { FC, useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import NavContext from '../../context/navContext';
+import NavContext from '../../context/navContext/navContext';
 import { NavRouteProps } from './NavRoutes.types';
 
 export const NavRoutes: FC = (): JSX.Element => {

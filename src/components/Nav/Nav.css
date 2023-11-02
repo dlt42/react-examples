@@ -18,7 +18,14 @@
   display: block;
   padding: 0;
   margin: 5px;
-  cursor: pointer;
+
+  a {
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+    text-wrap: nowrap;
+    cursor: pointer;
+  }
 
   &:hover {
     color: #fff;
@@ -28,17 +35,9 @@
   &.Current {
     background-color: #2b2b2b;
     color: #fff;
-    cursor: default;
 
-    &:hover a {
-      background-color: #2b2b2b;
+    a {
+      cursor: default;
     }
-  }
-
-  a {
-    text-decoration: none;
-    display: block;
-    padding: 5px;
-    text-wrap: nowrap;
   }
 }

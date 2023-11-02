@@ -6,11 +6,8 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import { App } from './App';
-import { ErrorProvider } from './error/ErrorContext';
-import runTasks from './global/processTasks';
+import { ErrorProvider } from './context/errorContext/errorProvider';
 import { persistor, store } from './state/store';
-
-void runTasks();
 
 const root = createRoot(document.getElementById(`root`) as HTMLElement);
 

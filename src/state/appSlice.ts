@@ -1,26 +1,11 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
+import {
+  Countries,
+  CountryCode,
+} from '../pages/world-map-page/country/Country.types';
 import { RootState } from './store';
-
-export type CountryCode = string | null;
-
-export type Country = {
-  key: string;
-  name: string;
-  capital: string;
-  region: string;
-  subregion: string;
-  population: number;
-  alpha3Code: CountryCode;
-  flag: string;
-  altSpellings: string[];
-  shortName: string;
-};
-
-export type Countries = {
-  items: Country[];
-};
 
 export type AppState = {
   appName: string | null;
