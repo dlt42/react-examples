@@ -2,12 +2,12 @@ import './ChartPage.css';
 
 import { FC, useEffect, useState } from 'react';
 
-import Button from '../components/Button.js';
-import Header from '../components/Header';
-import { ZoomableSunburstChart2 } from '../examples/d3/ZoomableSunburstChart2.jsx';
+import Button from '../components/Button/Button.js';
+import Header from '../components/Header/Header.js';
+import { ZoomableSunburstChart1 } from '../content/chart/zoomable-sunburst/ZoomableSunburstChart1.jsx';
+import { ZoomableSunburstChart2 } from '../content/chart/zoomable-sunburst/ZoomableSunburstChart2.jsx';
+import { useAppSelector } from '../hooks/useAppDispatch/useAppDispatch.js';
 import { Countries, Country, selectCountries } from '../state/appSlice';
-import { useAppSelector } from '../state/useAppDispatch.js';
-import { ZoomableSunburstChart1 } from './../examples/d3/ZoomableSunburstChart1.jsx';
 
 type ChartData = {
   name: string;

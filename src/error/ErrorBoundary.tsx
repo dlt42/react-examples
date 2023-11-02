@@ -1,9 +1,8 @@
 import { Component } from 'react';
 
-import Button from '../components/Button';
-import styles from './ErrorBoundary.module.css';
+import Button from '../components/Button/Button';
+import { ErrorMessage } from '../components/ErrorMessage/ErrorMessage';
 import { ErrorWithContext, HandleError } from './ErrorContext';
-import { ErrorMessage } from './ErrorMessage';
 import { getErrorMessage } from './utils';
 
 type IErrorBoundaryState = {
@@ -55,7 +54,12 @@ class ErrorBoundary extends Component<
       this.setState({ error: null });
     };
     return error && !handleError && !throwUnhandled ? (
-      <div className={className && styles.ErrorBoundary}>
+      <div
+        className={
+          className &&
+          'flex flex-col flex-wrap items-center justify-around gap-2 border border-solid border-gray-800 bg-white p-2'
+        }
+      >
         Error handled by ErrorBoundary in {boundaryLocation}:
         <ErrorMessage error={error} />
         <Button

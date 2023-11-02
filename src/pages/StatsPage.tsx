@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from 'react';
 
-import Header from '../components/Header';
-import CountryStats from '../examples/stats/CountryStats';
+import Header from '../components/Header/Header';
+import CountryStats from '../content/stats/CountryStats';
+import { useAppSelector } from '../hooks/useAppDispatch/useAppDispatch';
 import { Countries, selectCountries } from '../state/appSlice';
-import { useAppSelector } from '../state/useAppDispatch';
 
 const StatsPage: FC = (): JSX.Element => {
   const [status, setStatus] = useState(`Loading`);

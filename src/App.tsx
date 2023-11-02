@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 import { HashRouter } from 'react-router-dom';
 
+import { NavRoutes } from './components/NavRoutes/NavRoutes';
+import NavContext from './context/navContext';
+import { NavData } from './context/navContext.types';
 import ErrorBoundary from './error/ErrorBoundary';
 import { useError } from './error/useError';
-import NavContext, { NavData } from './examples/hooks/custom-nav/navContext';
-import { NavRoutes } from './examples/hooks/custom-nav/NavRoutes';
 import DataLoader from './global/DataLoader';
+import { useAppDispatch } from './hooks/useAppDispatch/useAppDispatch';
 import ChartPage from './pages/ChartPage';
 import ControlsPage from './pages/ControlsPage';
 import ErrorTestPage from './pages/ErrorTestPage';
@@ -15,7 +17,6 @@ import JSONViewerPage from './pages/JSONViewerPage';
 import LifePage from './pages/LifePage';
 import NotFoundPage from './pages/NotFoundPage';
 import StatsPage from './pages/StatsPage';
-import { useAppDispatch } from './state/useAppDispatch';
 
 const AppComponent = () => {
   const appDispatch = useAppDispatch();

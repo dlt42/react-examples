@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
-import Header from '../components/Header';
-import LifeContainer from '../examples/life/LifeContainer';
+import Header from '../components/Header/Header';
+import LifeContainer from '../content/life/LifeContainer';
 
 const LifePage: FC = (): JSX.Element => (
   <>

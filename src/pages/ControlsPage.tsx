@@ -2,12 +2,12 @@ import './ControlsPage.css';
 
 import { FC, MouseEvent, useCallback, useState } from 'react';
 
-import Header from '../components/Header';
-import RadialSelect from '../examples/radial/RadialSelect';
+import Header from '../components/Header/Header';
+import RadialSelect from '../content/controls/radial/RadialSelect';
 import {
   RadialSelectionTypes,
   RadialSelectProps,
-} from '../examples/radial/RadialSelectSupport';
+} from '../content/controls/radial/RadialSelectSupport';
 
 const ControlsPage: FC = (): JSX.Element => {
   const [value, setValue] = useState<RadialSelectionTypes | null>();

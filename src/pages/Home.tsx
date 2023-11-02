@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import Header from '../components/Header';
-import Spinner from '../examples/spinner/Spinner';
-import crazyPNG from './crazy.png';
+import crazyPNG from '../assets/crazy.png';
+import Header from '../components/Header/Header';
+import Spinner from '../content/home/spinner/Spinner';
 
 const HomePage: FC = (): JSX.Element => (
   <>

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
-import Header from '../components/Header';
-import JSONViewer from '../examples/json-viewer/JSONViewer';
+import Header from '../components/Header/Header';
+import JSONViewer from '../content/json-viewer/JSONViewer';
 
 const JSONViewerPage: FC = (): JSX.Element => (
   <>

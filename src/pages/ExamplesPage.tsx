@@ -1,31 +1,17 @@
 import { FC, useState } from 'react';
 
-import Button from '../components/Button';
-import CanvasWrapper, { DrawFunction } from '../components/CanvasWrapper';
-import Container from '../components/Container';
-import Description from '../components/Description';
-import Details from '../components/Details';
-import Header from '../components/Header';
-import Section from '../components/Section';
-import Counter from '../examples/hooks/counter/Counter';
-import Expression from '../examples/hooks/expression/Expression';
+import Button from '../components/Button/Button';
+import Container from '../components/Container/Container';
+import Description from '../components/Description/Description';
+import Details from '../components/Details/Details';
+import Header from '../components/Header/Header';
+import Section from '../components/Section/Section';
+import Animation from '../content/examples/animation/Animation';
+import Counter from '../content/examples/counter/Counter';
+import Expression from '../content/examples/expression/Expression';
 
 const ExamplesPage: FC = (): JSX.Element => {
   const [toggle, setToggle] = useState(false);
-
-  const draw: DrawFunction = (context, _, frameCount) => {
-    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-    context.fillStyle = `#000000`;
-    context.beginPath();
-    context.arc(
-      context.canvas.width / 2,
-      context.canvas.height / 2,
-      20 * Math.sin(frameCount.value * 0.05) ** 2,
-      0,
-      2 * Math.PI
-    );
-    context.fill();
-  };
   return (
     <>
       <header>
@@ -75,9 +61,7 @@ const ExamplesPage: FC = (): JSX.Element => {
             label='Details'
             content={['Uses a wrapped canvas component']}
           />
-          <Container>
-            <CanvasWrapper draw={draw} width={200} height={200} />
-          </Container>
+          <Animation />
         </Section>
       </main>
     </>

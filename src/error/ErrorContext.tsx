@@ -1,8 +1,7 @@
 import { createContext, ReactNode, useMemo, useState } from 'react';
 
-import Button from '../components/Button';
-import styles from './ErrorContext.module.css';
-import { ErrorMessage } from './ErrorMessage';
+import Button from '../components/Button/Button';
+import { ErrorMessage } from '../components/ErrorMessage/ErrorMessage';
 import { getErrorMessage } from './utils';
 
 export type HandleError = (error: Error | null) => void;
@@ -37,7 +36,7 @@ export function ErrorProvider({ children }: { children: ReactNode }) {
   return (
     <ErrorContext.Provider value={value}>
       {error !== null ? (
-        <div className={styles.ErrorContext}>
+        <div className='m-5 text-center'>
           Error handled by error context: <ErrorMessage error={error} />
           <Button
             onClick={() => {

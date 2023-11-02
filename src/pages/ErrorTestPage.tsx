@@ -2,8 +2,8 @@ import './ErrorTestPage.css';
 
 import { FC, useState } from 'react';
 
-import Button from '../components/Button';
-import Header from '../components/Header';
+import Button from '../components/Button/Button';
+import Header from '../components/Header/Header';
 import ErrorBoundary from '../error/ErrorBoundary';
 import { useError } from '../error/useError';
 
