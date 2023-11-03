@@ -1,5 +1,3 @@
-import './ControlsPage.css';
-
 import { FC, MouseEvent, useCallback, useState } from 'react';
 
 import Header from '../../components/Header/Header';
@@ -7,7 +5,7 @@ import RadialSelect from './radial/RadialSelect';
 import {
   RadialSelectionTypes,
   RadialSelectProps,
-} from './radial/RadialSelectSupport';
+} from './radial/RadialSelect.types';
 
 const ControlsPage: FC = (): JSX.Element => {
   const [value, setValue] = useState<RadialSelectionTypes | null>();
@@ -41,10 +39,10 @@ const ControlsPage: FC = (): JSX.Element => {
         <Header title='Controls' />
       </header>
       <main>
-        <section className='Controls-Section'>
+        <section className='flex flex-col items-center overflow-hidden'>
           <h3>Radial Select</h3>
           <div>(for a small number of options)</div>
-          <div className='Radial-Output'>
+          <div className='m-1'>
             Currently selected:
             {value
               ? radialSelectProps.options.filter((o) => value === o.value)[0]

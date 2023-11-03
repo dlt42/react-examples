@@ -10,7 +10,7 @@ export const ZoomableSunburstChart2 = ({ data, width, height }) => {
       controller.cleanup();
     };
   }, [data, height, width]);
-  return <svg className='Sunburst2' ref={ref} />;
+  return <svg className='max-h-[90vh] max-w-[90vw]' ref={ref} />;
 };
 
 export default ZoomableSunburstChart2;

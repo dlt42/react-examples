@@ -9,12 +9,11 @@ import {
 } from 'react';
 
 import {
-  degreesToRadians,
   RadialSelectOptionProps,
   RadialSelectOptionState,
-  setRefStyle,
   StepCallback,
-} from './RadialSelectSupport';
+} from './RadialSelect.types';
+import { degreesToRadians, setRefStyle } from './RadialSelect.util.';
 
 const StepTotal = 10;
 
@@ -71,7 +70,7 @@ const RadialSelectOption: FC<RadialSelectOptionProps> = memo(
     return (
       <div
         ref={ref}
-        className='Radial-Option'
+        className='absolute z-10 flex cursor-pointer flex-col items-center justify-center border border-solid border-gray-800 bg-gray-200 text-[10px] text-gray-800 hover:bg-gray-800 hover:text-gray-200'
         onClick={(e: MouseEvent) => onClickOption(e, index)}
       >
         {label}

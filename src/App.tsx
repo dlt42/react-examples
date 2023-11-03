@@ -4,7 +4,6 @@ import { HashRouter } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import { NavData } from './context/navContext/navContext.types';
 import NavProvider from './context/navContext/navProvider';
-import DataLoader from './global/DataLoader';
 import { useAppDispatch } from './hooks/useAppDispatch/useAppDispatch';
 import { useError } from './hooks/useError/useError';
 import ChartPage from './pages/chart-page/ChartPage';
@@ -15,12 +14,12 @@ import HomePage from './pages/home-page/Home';
 import JSONViewerPage from './pages/json-viewer-page/JSONViewerPage';
 import LifePage from './pages/life-page/LifePage';
 import NotFoundPage from './pages/not-found-page/NotFoundPage';
-import WorldMapPage from './pages/world-map-page/WorldMap';
+import WorldMapPage, { loadCountries } from './pages/world-map-page/WorldMap';
 
 const AppComponent = () => {
   const appDispatch = useAppDispatch();
   useEffect(() => {
-    void new DataLoader().loadCountries(appDispatch);
+    void loadCountries(appDispatch);
   }, [appDispatch]);
   const navData: NavData = {
     links: [

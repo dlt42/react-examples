@@ -1,5 +1,3 @@
-import './ChartPage.css';
-
 import { FC, useEffect, useState } from 'react';
 
 import Button from '../../components/Button/Button.js';
@@ -33,7 +31,7 @@ const prepareChartData = (countries: Countries): ChartData => {
   const regions: Record<string, ChartData> = {};
   const subRegions: Record<string, ChartData> = {};
   const added: Record<string, ChartData> = {};
-  countries.items.forEach((current) => {
+  countries.forEach((current) => {
     if (added[current.name]) {
       return;
     }
@@ -85,9 +83,11 @@ const ChartPage: FC = (): JSX.Element => {
         <Header title={`Sunburst Chart ${toggle ? `1` : `2`}`} />
       </header>
       <main>
-        <section className='Chart-Section'>
+        <section className='flex flex-col items-center overflow-hidden'>
           <h3>World Population</h3>
-          <Button onClick={() => setToggle(!toggle)}>Switch Chart</Button>
+          <div className='p-1'>
+            <Button onClick={() => setToggle(!toggle)}>Switch Chart</Button>
+          </div>
           {status === `Loaded` && toggle && (
             <ZoomableSunburstChart1 height={200} width={200} data={data} />
           )}

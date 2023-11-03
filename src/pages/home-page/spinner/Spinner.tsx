@@ -1,5 +1,3 @@
-import './Spinner.css';
-
 import { FC, memo, RefObject, useEffect, useReducer, useRef } from 'react';
 
 type SpinnerProps = {
@@ -20,12 +18,12 @@ type SpinnerData = {
 
 const SpinnerContent: FC<SpinnerContentProps> = memo(
   ({ spinnerRef, img }): JSX.Element => (
-    <div className='Spinner-Container'>
+    <div className='flex justify-center bg-black'>
       <img
         ref={spinnerRef}
         src={img}
         width='300'
-        className='Spinner-Style'
+        className='h-[300px] w-[300px] opacity-100 will-change-transform transform-style-3d'
         alt=''
       />
     </div>

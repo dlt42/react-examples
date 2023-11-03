@@ -1,44 +1,37 @@
 import axios from 'axios';
+import { Result } from 'true-myth';
+import { ZodError, ZodType, ZodTypeDef } from 'zod';
 
-import {
-  Countries,
-  Country,
-} from '../pages/world-map-page/country/Country.types';
-import { setCountries } from '../state/appSlice';
-import { AppDispatch } from '../state/store';
+import { getErrorMessage } from './util';
 
-export default class DataLoader {
-  public async loadCountries(appDispatch: AppDispatch): Promise<boolean> {
-    try {
-      const res: { data: Country[] } = await axios.get(
-        `https://restcountries.com/v2/all?fields=name,capital,region,subregion,population,alpha3Code,flag,altSpellings`
-      );
-      res.data.forEach((current) => {
-        current.key = `${current.name}-${current.alpha3Code}`;
-        current.shortName = current.name;
-        if (current.altSpellings) {
-          current.altSpellings
-            .sort((a, b) => b.length - a.length)
-            .forEach((spelling: string) => {
-              if (
-                current.shortName.length > 20 &&
-                current.shortName.length < spelling.length &&
-                spelling.length > 3
-              ) {
-                current.shortName = spelling;
-              }
-            });
-        }
-        if (current.shortName.length > 20) {
-          current.shortName = current.shortName.substring(0, 16) + `...`;
-        }
-      });
-      const countries: Countries = { items: res.data };
-      appDispatch(setCountries(countries));
-      return true;
-    } catch (e) {
-      setCountries({ items: [] });
-      return false;
-    }
+export type DataLoaderErrorName = 'InvalidResponse';
+
+const convertZodError = (error: ZodError) =>
+  error.issues.map(
+    (i) => `${i.path.length ? `${i.path.join('.')} -> ` : ''}${i.message}`
+  );
+
+type Schema<T> = ZodType<T, ZodTypeDef, T>;
+
+const validateResponse = <T>(
+  schema: Schema<T>,
+  value: unknown
+): Result<T, string[]> => {
+  const parseResult = schema.safeParse(value);
+  return parseResult.success
+    ? Result.ok(parseResult.data)
+    : Result.err(convertZodError(parseResult.error));
+};
+
+//TODO: Use error type with { type: 'thrown' | 'validation' }
+export const loadData = async <T>(
+  schema: Schema<T>,
+  url: string
+): Promise<Result<T, string[]>> => {
+  try {
+    const res: T = await axios.get(url);
+    return validateResponse(schema, res);
+  } catch (e) {
+    return Result.err([getErrorMessage(e)]);
   }
-}
+};

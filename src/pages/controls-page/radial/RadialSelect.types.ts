@@ -1,4 +1,4 @@
-import { MouseEvent, RefObject } from 'react';
+import { MouseEvent } from 'react';
 
 export type RadialOption<T> = { value: T; label: string };
 
@@ -44,22 +44,4 @@ export type RadialSelectOptionProps = {
   registerCallback: RegisterCallback;
   itemDiameter: number;
   centerDiameter: number;
-};
-
-export const degreesToRadians = (degrees: number): number => {
-  return degrees * (Math.PI / 180);
-};
-
-export const setRefStyle = (
-  ref: RefObject<HTMLDivElement>,
-  diameter: number
-) => {
-  if (!ref.current) {
-    return;
-  }
-  ref.current.style.minWidth = diameter + `px`;
-  ref.current.style.maxWidth = diameter + `px`;
-  ref.current.style.minHeight = diameter + `px`;
-  ref.current.style.maxHeight = diameter + `px`;
-  ref.current.style.borderRadius = diameter / 2 + `px`;
 };

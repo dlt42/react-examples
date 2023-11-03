@@ -45,8 +45,7 @@ const CountryList: FC = memo((): JSX.Element => {
       onMouseLeave={() => setAllowcroll(true)}
     >
       {countries &&
-        countries.items &&
-        countries.items.map((current: Country) => {
+        countries.map((current: Country) => {
           const props: CountryListItemProps = {
             current,
             addItemRef,

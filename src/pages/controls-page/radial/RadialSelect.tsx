@@ -1,5 +1,3 @@
-import './RadialSelect.css';
-
 import {
   memo,
   MouseEvent,
@@ -9,7 +7,6 @@ import {
   useState,
 } from 'react';
 
-import RadialSelectOption from './RadialSelectOption';
 import {
   OptionCallback,
   RadialOption,
@@ -18,9 +15,10 @@ import {
   RadialSelectProps,
   RegisterCallback,
   SelectCallback,
-  setRefStyle,
   StepCallback,
-} from './RadialSelectSupport';
+} from './RadialSelect.types';
+import { setRefStyle } from './RadialSelect.util.';
+import RadialSelectOption from './RadialSelectOption';
 
 const RadialSelect = memo(
   <T extends RadialSelectionTypes>({
@@ -80,7 +78,10 @@ const RadialSelect = memo(
 
     return (
       <>
-        <div ref={outerRef} className='Radial-Input'>
+        <div
+          ref={outerRef}
+          className='relative flex items-center justify-center border border-solid border-gray-200 bg-gray-500'
+        >
           {options.map((option: RadialOption<T>, index: number) => {
             const props: RadialSelectOptionProps = {
               label: option.label,
@@ -98,12 +99,12 @@ const RadialSelect = memo(
           })}
           <div
             ref={ref}
-            className='Radial-Center'
+            className='z-20 flex cursor-pointer flex-col items-center justify-center border border-solid border-gray-800 bg-gray-200 text-[10px] text-gray-800 hover:bg-gray-800 hover:text-gray-200'
             onClick={() => onClickSelect()}
           >
             <div>{(value && selectedLabel) || label}</div>
             {value && (
-              <div className='Radial-Selected'>
+              <div className='underline'>
                 {options.filter((o) => value === o.value)[0].label}
               </div>
             )}

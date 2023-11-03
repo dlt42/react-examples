@@ -15,9 +15,7 @@ export type AppState = {
 
 const initialState: AppState = {
   appName: null,
-  countries: {
-    items: [],
-  },
+  countries: [],
   highlightCountryCode: null,
 };
 

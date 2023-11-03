@@ -17,14 +17,14 @@ const CountryDetails: FC = memo((): JSX.Element => {
   const [country, setCountry] = useState<Country | null>(null);
   useEffect((): void => {
     if (highlightCountryCode) {
-      const found = countries.items.find((country: Country) => {
+      const found = countries.find((country: Country) => {
         return country.alpha3Code === highlightCountryCode;
       });
       setCountry(found || null);
     } else {
       setCountry(null);
     }
-  }, [highlightCountryCode, countries.items]);
+  }, [highlightCountryCode, countries]);
   if (country) {
     return (
       <div className='Country-Details'>
