@@ -13,10 +13,12 @@ const convertZodError = (error: ZodError) =>
 
 type Schema<T> = ZodType<T, ZodTypeDef, T>;
 
+type ResponseValidationResult<T> = Result<T, string[]>;
+
 const validateResponse = <T>(
   schema: Schema<T>,
   value: unknown
-): Result<T, string[]> => {
+): ResponseValidationResult<T> => {
   const parseResult = schema.safeParse(value);
   return parseResult.success
     ? Result.ok(parseResult.data)
@@ -27,7 +29,7 @@ const validateResponse = <T>(
 export const loadData = async <T>(
   schema: Schema<T>,
   url: string
-): Promise<Result<T, string[]>> => {
+): Promise<ResponseValidationResult<T>> => {
   try {
     const res: T = await axios.get(url);
     return validateResponse(schema, res);

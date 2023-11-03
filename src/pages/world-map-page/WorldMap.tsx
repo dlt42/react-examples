@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 
 import Header from '../../components/Header/Header';
-import { loadData } from '../../global/DataLoader';
+import { loadData } from '../../global/loadData';
 import { useAppSelector } from '../../hooks/useAppDispatch/useAppDispatch';
 import { selectCountries, setCountries } from '../../state/appSlice';
 import { AppDispatch } from '../../state/store';
