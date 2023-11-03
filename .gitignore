@@ -24,4 +24,4 @@ build
 *.sln
 *.sw?
 
-src/dev-files/*
+dev-files/*
