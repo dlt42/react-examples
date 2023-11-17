@@ -41,7 +41,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     return error && !handleError && !throwUnhandled ? (
       <div
         className={
-          className &&
+          (className ? `${className} ` : ``) +
           'flex flex-col flex-wrap items-center justify-around gap-2 border border-solid border-gray-800 bg-white p-2'
         }
       >

@@ -105,7 +105,10 @@ const LifeContainer: FC<LifeContainerProps> = memo((props): JSX.Element => {
           )}
           <div className='Life-Info'>Total generations: {generations}</div>
           <div className='Life-Controls'>
-            <Button onClick={() => setPaused((paused) => !paused)}>
+            <Button
+              onClick={() => setPaused((paused) => !paused)}
+              className={'w-[50px]'}
+            >
               <FontAwesomeIcon icon={paused ? faPlay : faPause} />
             </Button>
             {/* 
@@ -122,10 +125,18 @@ const LifeContainer: FC<LifeContainerProps> = memo((props): JSX.Element => {
               />
             </button>
              */}
-            <Button title='Reset' onClick={() => reset()}>
+            <Button
+              title='Reset'
+              onClick={() => reset()}
+              className={'w-[50px]'}
+            >
               <FontAwesomeIcon icon={faRotateLeft} />
             </Button>
-            <Button title='Toggle Rendering' onClick={() => toggle()}>
+            <Button
+              title='Toggle Rendering'
+              onClick={() => toggle()}
+              className={'w-[50px]'}
+            >
               <FontAwesomeIcon icon={faPalette} />
             </Button>
           </div>
