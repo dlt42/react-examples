@@ -2,18 +2,18 @@ module.exports = {
   env: {
     node: true,
     browser: true,
-    es2020: true
+    es2020: true,
   },
   settings: {
     react: {
-      version: 'detect'
-    }
+      version: 'detect',
+    },
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
-    }
+      jsx: true,
+    },
   },
   plugins: [
     'react',
@@ -21,7 +21,7 @@ module.exports = {
     'prettier',
     '@typescript-eslint',
     'simple-import-sort',
-    'tailwindcss'
+    'tailwindcss',
   ],
   extends: [
     'eslint:recommended',
@@ -30,7 +30,7 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:prettier/recommended',
     'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended'
+    'plugin:react-hooks/recommended',
   ],
   rules: {
     'react-hooks/rules-of-hooks': 'error',
@@ -43,6 +43,6 @@ module.exports = {
     'simple-import-sort/exports': 'error',
     '@typescript-eslint/ban-types': 'off',
     'react/display-name': 'off',
-    allowObjectPatternsAsParameters: 'off'
-  }
+    allowObjectPatternsAsParameters: 'off',
+  },
 };

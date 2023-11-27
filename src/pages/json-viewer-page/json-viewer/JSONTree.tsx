@@ -30,7 +30,10 @@ const JSONBlock: FC<JSONTreeProps> = memo((props): JSX.Element => {
         </div>
       )}
       {!isArray && toggle && (
-        <div className='Json-Object' title={!path ? `.` : path}>
+        <div
+          className='Json-Object Json-Object-Color'
+          title={!path ? `.` : path}
+        >
           {Object.entries(elemValue).map(
             ([currentKey, currentValue], index) => (
               <JSONTree
@@ -44,7 +47,7 @@ const JSONBlock: FC<JSONTreeProps> = memo((props): JSX.Element => {
         </div>
       )}
       {Array.isArray(elemValue) && toggle && (
-        <div className='Json-Array' title={path}>
+        <div className='Json-Array Json-Array-Color' title={path}>
           {elemValue.map((current: unknown, index: number) => (
             <JSONArrayItem
               key={index}
@@ -65,7 +68,7 @@ const JSONArrayItem: FC<JSONArrayItemProps> = memo((props): JSX.Element => {
   return (
     <>
       {!isObjectType && (
-        <div className='Json-Attribute-Value' title={path}>
+        <div className='Json-Array-Value Json-Array-Value-Color' title={path}>
           {(hasValue && JSON.stringify(elemValue)) || `null`}
         </div>
       )}
@@ -89,7 +92,10 @@ const JSONTree: FC<JSONTreeProps> = memo((props): JSX.Element => {
         </div>
       )}
       {!isObjectType && (
-        <div className='Json-Attribute-Value' title={path}>
+        <div
+          className='Json-Attribute-Value Json-Attribute-Value-Color'
+          title={path}
+        >
           {(hasValue && elemValue.toString()) || `null`}
         </div>
       )}

@@ -19,11 +19,9 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 5px;
-}
-
-.Viewer-Input > * {
-  margin: 5px;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid black;
 }
 
 .Viewer-Input > input {
@@ -33,43 +31,8 @@
   padding: 5px;
 }
 
-.Json-Attribute-Name {
-  font-weight: bold;
-  color: green;
-  min-width: 130px;
-  max-width: 130px;
-  text-overflow: ellipsis;
-  overflow: hidden;
+.Json-Root {
   font-size: 12px;
-  padding: 5px;
-  display: flex;
-  justify-content: space-between;
-  word-break: break-all;
-  background-color: white;
-}
-
-.Json-Attribute-Value-Color {
-  background-color: #cdefd2;
-}
-
-.Json-Attribute-Value {
-  font-weight: bold;
-  color: green;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  font-size: 12px;
-  padding: 5px;
-  flex-grow: 1;
-  background-color: #cdefd2;
-  border-left: 1px solid black;
-  word-break: break-all;
-}
-
-.Json-Array,
-.Json-Object {
-  display: flex;
-  text-align: left;
-  flex-direction: column;
 }
 
 .Json-Root,
@@ -77,10 +40,39 @@
   display: flex;
   flex-direction: row;
   text-align: left;
-  border: 1px solid black;
-  margin: 5px;
-  margin-bottom: 0;
   background-color: white;
+}
+
+.Json-Attribute-Name {
+  font-weight: bold;
+  color: green;
+  min-width: 130px;
+  max-width: 130px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  word-break: break-all;
+  background-color: white;
+}
+
+.Json-Array-Value-Color,
+.Json-Attribute-Value-Color {
+  background-color: #cdefd2;
+  background-color: #d2f8d9;
+}
+
+.Json-Array-Value,
+.Json-Attribute-Value {
+  font-weight: bold;
+  color: green;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding: 5px;
+  flex-grow: 1;
+  flex-shrink: 0;
+  word-break: break-all;
 }
 
 .Json-Attribute-Name > div {
@@ -92,67 +84,46 @@
   padding: 0px 5px;
   line-height: 1rem;
   color: black;
+  border-radius: 5px;
+  width: 20px;
+  height: 20px;
 }
 
-.Json-Root,
-.Json-Attribute:last-of-type {
-  margin-bottom: 5px;
+.Json-Array,
+.Json-Object {
+  display: flex;
+  text-align: left;
+  gap: 8px;
+  padding: 8px;
+  flex-grow: 1;
+  flex-direction: column;
 }
 
 .Json-Object-Color {
   background-color: #bfd1fb;
 }
 
-.Json-Object {
-  flex-grow: 1;
-  background-color: #bfd1fb;
-  border-left: 1px solid black;
-}
-
-.Json-Array > .Json-Object {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid black;
-  margin: 5px;
-}
-
 .Json-Array-Color {
-  background-color: #faebd7;
+  background-color: #ffd7b4;
 }
 
 .Json-Array {
-  padding: 5px;
-  background-color: #faebd7;
-  border-left: 1px solid black;
-  flex-grow: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   max-height: 400px;
-}
-
-.Json-Array > .Json-Attribute-Value {
-  margin: 5px;
-  margin-bottom: 0;
-  border: 1px solid black;
-  min-height: 28px;
-}
-
-.Json-Array > .Json-Attribute-Value:last-of-type {
-  margin-bottom: 5px;
-}
-
-.Json-Attribute-Value-Content {
-  max-width: 150px;
+  border-top: 2px solid #ffd7b4;
+  border-bottom: 2px solid #ffd7b4;
 }
 
 .Key-Container {
   display: flex;
   justify-content: center;
   flex-direction: row;
+  gap: 5px;
 }
 
 .Key-Container > div {
   padding: 5px;
-  margin: 5px;
 }
 
 .JSONViewerBoundary {
