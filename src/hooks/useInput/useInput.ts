@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import {
   InputProps,
@@ -14,17 +14,23 @@ export const useInput = <T>(
   validator?: Validator<T>
 ): [InputProps<T>, ResetValue, SetValue<T>] => {
   const [value, setValue] = useState<T>(initialValue);
-  const set = (newValue: T): void => {
-    const processedValue = validator ? validator(value, newValue) : newValue;
-    setValue(processedValue);
-    valueChanged(processedValue);
-  };
-  const reset = () => set(initialValue);
-  const props: InputProps<T> = {
-    value,
-
-    onChange: (e) => set(e.target.value as unknown as T),
-  };
+  const set = useCallback(
+    (newValue: T): void => {
+      const processedValue = validator ? validator(value, newValue) : newValue;
+      setValue(processedValue);
+      valueChanged(processedValue);
+    },
+    [validator, setValue, valueChanged, value]
+  );
+  const reset = useCallback(() => {
+    return () => set(initialValue);
+  }, [initialValue, set]);
+  const props: InputProps<T> = useMemo(() => {
+    return {
+      value,
+      onChange: (e) => set(e.target.value as unknown as T),
+    };
+  }, [value, set]);
   return [props, reset, set];
 };
 
